@@ -10,6 +10,29 @@
 		AD81EF571EE8C506008CC149 /* MonoRail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD81EF4D1EE8C506008CC149 /* MonoRail.framework */; };
 		AD81EF5C1EE8C506008CC149 /* MonoRailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF5B1EE8C506008CC149 /* MonoRailTests.swift */; };
 		AD81EF5E1EE8C506008CC149 /* MonoRail.h in Headers */ = {isa = PBXBuildFile; fileRef = AD81EF501EE8C506008CC149 /* MonoRail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD81EF711EE8C540008CC149 /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF671EE8C540008CC149 /* Actionable.swift */; };
+		AD81EF721EE8C540008CC149 /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF671EE8C540008CC149 /* Actionable.swift */; };
+		AD81EF731EE8C540008CC149 /* Active.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF681EE8C540008CC149 /* Active.swift */; };
+		AD81EF741EE8C540008CC149 /* Active.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF681EE8C540008CC149 /* Active.swift */; };
+		AD81EF751EE8C540008CC149 /* ActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF691EE8C540008CC149 /* ActiveModel.swift */; };
+		AD81EF761EE8C540008CC149 /* ActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF691EE8C540008CC149 /* ActiveModel.swift */; };
+		AD81EF771EE8C540008CC149 /* FieldTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6A1EE8C540008CC149 /* FieldTypes.swift */; };
+		AD81EF781EE8C540008CC149 /* FieldTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6A1EE8C540008CC149 /* FieldTypes.swift */; };
+		AD81EF791EE8C540008CC149 /* Modellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6B1EE8C540008CC149 /* Modellable.swift */; };
+		AD81EF7A1EE8C540008CC149 /* Modellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6B1EE8C540008CC149 /* Modellable.swift */; };
+		AD81EF7B1EE8C540008CC149 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6C1EE8C540008CC149 /* Networking.swift */; };
+		AD81EF7C1EE8C540008CC149 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6C1EE8C540008CC149 /* Networking.swift */; };
+		AD81EF7D1EE8C540008CC149 /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6D1EE8C540008CC149 /* Persist.swift */; };
+		AD81EF7E1EE8C540008CC149 /* Persist.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6D1EE8C540008CC149 /* Persist.swift */; };
+		AD81EF7F1EE8C540008CC149 /* Pluralize.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6E1EE8C540008CC149 /* Pluralize.swift */; };
+		AD81EF801EE8C540008CC149 /* Pluralize.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6E1EE8C540008CC149 /* Pluralize.swift */; };
+		AD81EF811EE8C540008CC149 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6F1EE8C540008CC149 /* Serializable.swift */; };
+		AD81EF821EE8C540008CC149 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF6F1EE8C540008CC149 /* Serializable.swift */; };
+		AD81EF831EE8C540008CC149 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF701EE8C540008CC149 /* Store.swift */; };
+		AD81EF841EE8C540008CC149 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF701EE8C540008CC149 /* Store.swift */; };
+		AD81EF8A1EE8C59D008CC149 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF891EE8C59D008CC149 /* Extensions.swift */; };
+		AD81EF8B1EE8C59D008CC149 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF891EE8C59D008CC149 /* Extensions.swift */; };
+		ADD9E2B11EE8C73600A75C20 /* MonoRail.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD9E2B01EE8C73600A75C20 /* MonoRail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +52,18 @@
 		AD81EF561EE8C506008CC149 /* MonoRailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonoRailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD81EF5B1EE8C506008CC149 /* MonoRailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoRailTests.swift; sourceTree = "<group>"; };
 		AD81EF5D1EE8C506008CC149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD81EF671EE8C540008CC149 /* Actionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actionable.swift; sourceTree = "<group>"; };
+		AD81EF681EE8C540008CC149 /* Active.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Active.swift; sourceTree = "<group>"; };
+		AD81EF691EE8C540008CC149 /* ActiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveModel.swift; sourceTree = "<group>"; };
+		AD81EF6A1EE8C540008CC149 /* FieldTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldTypes.swift; sourceTree = "<group>"; };
+		AD81EF6B1EE8C540008CC149 /* Modellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modellable.swift; sourceTree = "<group>"; };
+		AD81EF6C1EE8C540008CC149 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		AD81EF6D1EE8C540008CC149 /* Persist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persist.swift; sourceTree = "<group>"; };
+		AD81EF6E1EE8C540008CC149 /* Pluralize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pluralize.swift; sourceTree = "<group>"; };
+		AD81EF6F1EE8C540008CC149 /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
+		AD81EF701EE8C540008CC149 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		AD81EF891EE8C59D008CC149 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		ADD9E2B01EE8C73600A75C20 /* MonoRail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonoRail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +106,12 @@
 		AD81EF4F1EE8C506008CC149 /* MonoRail */ = {
 			isa = PBXGroup;
 			children = (
+				AD81EF691EE8C540008CC149 /* ActiveModel.swift */,
+				AD81EF851EE8C544008CC149 /* Active */,
+				AD81EF861EE8C54C008CC149 /* Networking */,
+				AD81EF881EE8C55E008CC149 /* Extensions */,
+				AD81EF871EE8C552008CC149 /* External */,
+				ADD9E2B01EE8C73600A75C20 /* MonoRail.swift */,
 				AD81EF501EE8C506008CC149 /* MonoRail.h */,
 				AD81EF511EE8C506008CC149 /* Info.plist */,
 			);
@@ -84,6 +125,44 @@
 				AD81EF5D1EE8C506008CC149 /* Info.plist */,
 			);
 			path = MonoRailTests;
+			sourceTree = "<group>";
+		};
+		AD81EF851EE8C544008CC149 /* Active */ = {
+			isa = PBXGroup;
+			children = (
+				AD81EF681EE8C540008CC149 /* Active.swift */,
+				AD81EF671EE8C540008CC149 /* Actionable.swift */,
+				AD81EF6F1EE8C540008CC149 /* Serializable.swift */,
+				AD81EF6B1EE8C540008CC149 /* Modellable.swift */,
+				AD81EF701EE8C540008CC149 /* Store.swift */,
+				AD81EF6D1EE8C540008CC149 /* Persist.swift */,
+				AD81EF6A1EE8C540008CC149 /* FieldTypes.swift */,
+			);
+			name = Active;
+			sourceTree = "<group>";
+		};
+		AD81EF861EE8C54C008CC149 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AD81EF6C1EE8C540008CC149 /* Networking.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		AD81EF871EE8C552008CC149 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				AD81EF6E1EE8C540008CC149 /* Pluralize.swift */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		AD81EF881EE8C55E008CC149 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD81EF891EE8C59D008CC149 /* Extensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +228,7 @@
 					AD81EF4C1EE8C506008CC149 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 5238DX4WER;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					AD81EF551EE8C506008CC149 = {
@@ -198,6 +278,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD81EF791EE8C540008CC149 /* Modellable.swift in Sources */,
+				AD81EF771EE8C540008CC149 /* FieldTypes.swift in Sources */,
+				AD81EF7F1EE8C540008CC149 /* Pluralize.swift in Sources */,
+				AD81EF811EE8C540008CC149 /* Serializable.swift in Sources */,
+				AD81EF751EE8C540008CC149 /* ActiveModel.swift in Sources */,
+				AD81EF831EE8C540008CC149 /* Store.swift in Sources */,
+				ADD9E2B11EE8C73600A75C20 /* MonoRail.swift in Sources */,
+				AD81EF7B1EE8C540008CC149 /* Networking.swift in Sources */,
+				AD81EF711EE8C540008CC149 /* Actionable.swift in Sources */,
+				AD81EF7D1EE8C540008CC149 /* Persist.swift in Sources */,
+				AD81EF8A1EE8C59D008CC149 /* Extensions.swift in Sources */,
+				AD81EF731EE8C540008CC149 /* Active.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +297,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD81EF801EE8C540008CC149 /* Pluralize.swift in Sources */,
+				AD81EF7A1EE8C540008CC149 /* Modellable.swift in Sources */,
 				AD81EF5C1EE8C506008CC149 /* MonoRailTests.swift in Sources */,
+				AD81EF7E1EE8C540008CC149 /* Persist.swift in Sources */,
+				AD81EF761EE8C540008CC149 /* ActiveModel.swift in Sources */,
+				AD81EF721EE8C540008CC149 /* Actionable.swift in Sources */,
+				AD81EF841EE8C540008CC149 /* Store.swift in Sources */,
+				AD81EF8B1EE8C59D008CC149 /* Extensions.swift in Sources */,
+				AD81EF821EE8C540008CC149 /* Serializable.swift in Sources */,
+				AD81EF741EE8C540008CC149 /* Active.swift in Sources */,
+				AD81EF781EE8C540008CC149 /* FieldTypes.swift in Sources */,
+				AD81EF7C1EE8C540008CC149 /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +427,7 @@
 		AD81EF621EE8C506008CC149 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5238DX4WER;
@@ -336,6 +440,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zrubenst.MonoRail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -343,6 +448,7 @@
 		AD81EF631EE8C506008CC149 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5238DX4WER;
@@ -362,6 +468,7 @@
 		AD81EF651EE8C506008CC149 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 5238DX4WER;
 				INFOPLIST_FILE = MonoRailTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -374,6 +481,7 @@
 		AD81EF661EE8C506008CC149 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 5238DX4WER;
 				INFOPLIST_FILE = MonoRailTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -402,6 +510,7 @@
 				AD81EF631EE8C506008CC149 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD81EF641EE8C506008CC149 /* Build configuration list for PBXNativeTarget "MonoRailTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +519,7 @@
 				AD81EF661EE8C506008CC149 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
