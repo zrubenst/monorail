@@ -1,15 +1,15 @@
 
 import UIKit
 
-public class Persist {
+internal class Persist {
     
     private init() {}
-    private static var shared = Persist()
+    internal static var shared = Persist()
     
     internal var table:[String:[ActiveModel]] = [:]
     
     
-    public class func register<T:ActiveModel>(_ register: T) {
+    internal class func register<T:ActiveModel>(_ register: T) {
         
         let identifier = register.modelGetInstanceID()
         
@@ -27,7 +27,7 @@ public class Persist {
         shared.table[identifier] = [register]
     }
     
-    public class func push<T:ActiveModel>(synchronize newest:T) {
+    internal class func push<T:ActiveModel>(synchronize newest:T) {
         let identifier = newest.modelGetInstanceID()
         
         if !isRegistered(register: newest) {
@@ -60,7 +60,7 @@ public class Persist {
         return false
     }
     
-    class func remove(_ removal:ActiveModel) {
+    internal class func remove(_ removal:ActiveModel) {
         let identifier = removal.modelGetInstanceID()
         
         if let instances:Array<ActiveModel> = shared.table[identifier] {

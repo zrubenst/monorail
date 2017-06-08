@@ -1,7 +1,7 @@
 
 import Foundation
 
-open class ActiveModel:NSObject, Actionable {
+open class ActiveModel:NSObject, Actionable, Awakable {
     
     /////////////////////////
     // Override This
@@ -91,12 +91,6 @@ open class ActiveModel:NSObject, Actionable {
     public static func modelGetNewPersisted(id:String) -> ActiveModel { return self.init(id: id) }
     public func modelGetValue(forKey key:String) -> Any? { return self.value(forKeyPath:key) }
     public func modelSetValue(_ value:Any?, forKey key:String) { self.setValue(value, forKeyPath: key) }
-    public static func assertActivatedModel() {
-        if store.modelActivated { return }
-        setStoreDefaults()
-        register()
-        store.modelActivated = true
-    }
     
     open override func setValue(_ value: Any?, forUndefinedKey key: String) {
         Active.Error.warn(message: "Attempted to set a value for an undefined field '\(key)'", model: self)
@@ -206,6 +200,13 @@ open class ActiveModel:NSObject, Actionable {
     
     private var _id:String = ""
     public var id:String { return _id }
+    
+    class func awake() {
+        if store.modelActivated { return }
+        setStoreDefaults()
+        register()
+        store.modelActivated = true
+    }
     
     required override public init() {
         super.init()

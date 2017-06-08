@@ -15,12 +15,12 @@ public protocol Modellable {
     func modelGetThis() -> ActiveModel
     static func modelGetNew() -> ActiveModel
     static func modelGetNewPersisted(id:String) -> ActiveModel
-    
-    static func assertActivatedModel()
-    
+        
 }
 
 extension Modellable {
+    
+    internal var this:ActiveModel { return modelGetThis() }
     
     static func asSelf(instance:Any) -> Self? {
         if let me:Self = instance as? Self {

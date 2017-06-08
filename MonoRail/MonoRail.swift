@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MonoRail {
+public class MonoRail {
 
     private init() { }
     internal static var shared = MonoRail()
@@ -25,6 +25,5 @@ class MonoRail {
     public static var apiRootUrl:String {
         return shared.apiUrl
     }
-
     
 }

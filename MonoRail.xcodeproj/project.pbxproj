@@ -32,6 +32,8 @@
 		AD81EF841EE8C540008CC149 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF701EE8C540008CC149 /* Store.swift */; };
 		AD81EF8A1EE8C59D008CC149 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF891EE8C59D008CC149 /* Extensions.swift */; };
 		AD81EF8B1EE8C59D008CC149 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF891EE8C59D008CC149 /* Extensions.swift */; };
+		AD8956781EE8D8D900D4EB82 /* Awakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8956771EE8D8D900D4EB82 /* Awakable.swift */; };
+		AD89567A1EE8E13600D4EB82 /* ActiveNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8956791EE8E13600D4EB82 /* ActiveNetwork.swift */; };
 		ADD9E2B11EE8C73600A75C20 /* MonoRail.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD9E2B01EE8C73600A75C20 /* MonoRail.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		AD81EF6F1EE8C540008CC149 /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		AD81EF701EE8C540008CC149 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		AD81EF891EE8C59D008CC149 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AD8956771EE8D8D900D4EB82 /* Awakable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Awakable.swift; sourceTree = "<group>"; };
+		AD8956791EE8E13600D4EB82 /* ActiveNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveNetwork.swift; sourceTree = "<group>"; };
 		ADD9E2B01EE8C73600A75C20 /* MonoRail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonoRail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +138,7 @@
 				AD81EF671EE8C540008CC149 /* Actionable.swift */,
 				AD81EF6F1EE8C540008CC149 /* Serializable.swift */,
 				AD81EF6B1EE8C540008CC149 /* Modellable.swift */,
+				AD8956771EE8D8D900D4EB82 /* Awakable.swift */,
 				AD81EF701EE8C540008CC149 /* Store.swift */,
 				AD81EF6D1EE8C540008CC149 /* Persist.swift */,
 				AD81EF6A1EE8C540008CC149 /* FieldTypes.swift */,
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				AD81EF6C1EE8C540008CC149 /* Networking.swift */,
+				AD8956791EE8E13600D4EB82 /* ActiveNetwork.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -278,8 +284,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD89567A1EE8E13600D4EB82 /* ActiveNetwork.swift in Sources */,
 				AD81EF791EE8C540008CC149 /* Modellable.swift in Sources */,
 				AD81EF771EE8C540008CC149 /* FieldTypes.swift in Sources */,
+				AD8956781EE8D8D900D4EB82 /* Awakable.swift in Sources */,
 				AD81EF7F1EE8C540008CC149 /* Pluralize.swift in Sources */,
 				AD81EF811EE8C540008CC149 /* Serializable.swift in Sources */,
 				AD81EF751EE8C540008CC149 /* ActiveModel.swift in Sources */,

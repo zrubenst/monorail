@@ -56,23 +56,24 @@ public class Networking: UIView {
         
         let task = session.dataTask(with: request, completionHandler: { data, aresponse, error in
             
-            guard let response:HTTPURLResponse = aresponse as? HTTPURLResponse else {
-                failure(NSError(domain: "An error occurred", code: 430, userInfo: nil), data)
-                return
+            DispatchQueue.main.async{
+                guard let response:HTTPURLResponse = aresponse as? HTTPURLResponse else {
+                    failure(NSError(domain: "An error occurred", code: 430, userInfo: nil), data)
+                    return
+                }
+                
+                if error != nil {
+                    failure(NSError(domain: error!.localizedDescription, code: response.statusCode, userInfo: nil), data)
+                    return
+                }
+                
+                if data == nil {
+                    failure(NSError(domain: "An error occurred", code: response.statusCode, userInfo: nil), nil)
+                    return
+                }
+                
+                success(data!, response)
             }
-            
-            if error != nil {
-                failure(NSError(domain: error!.localizedDescription, code: response.statusCode, userInfo: nil), data)
-                return
-            }
-            
-            if data == nil {
-                failure(NSError(domain: "An error occurred", code: response.statusCode, userInfo: nil), nil)
-                return
-            }
-            
-            success(data!, response)
-            
         })
         
         task.resume()
