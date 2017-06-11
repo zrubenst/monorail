@@ -26,4 +26,34 @@ public class MonoRail {
         return shared.apiUrl
     }
     
+    internal class Error {
+        
+        internal static var shared:Error = Error()
+        private var _errors:Bool = true
+        
+        class func turnOffErrors() { shared._errors = false }
+        class func turnOnErrors() { shared._errors = true }
+        static var errorsOn:Bool { return shared._errors }
+        
+        class func warn(message:String, model:ActiveModel?=nil) {
+            if !errorsOn { return }
+            let name = model != nil ? model!.className + ":  " : ""
+            print("\n<<<<<<<<<<<      MonoRail Warning      >>>>>>>>>>>")
+            print(name + message)
+            print("------------------------------------------------\n")
+        }
+        
+        class func error(message:String, model:ActiveModel?=nil) {
+            if !errorsOn { return }
+            let name = model != nil ? model!.className + ":  " : ""
+            print("\n<<<<<<<<<<<      MonoRail Error      >>>>>>>>>>>")
+            print(name + message)
+            print("------------------------------------------------\n")
+        }
+        
+        
+        init() { }
+        
+    }
+    
 }

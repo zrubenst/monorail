@@ -60,6 +60,16 @@ internal class Persist {
         return false
     }
     
+    internal class func persisted(like:ActiveModel) -> ActiveModel? {
+        let identifier = like.modelGetInstanceID()
+        
+        if let array:[ActiveModel] = shared.table[identifier] {
+            return array.last
+        }
+        
+        return nil
+    }
+    
     internal class func remove(_ removal:ActiveModel) {
         let identifier = removal.modelGetInstanceID()
         

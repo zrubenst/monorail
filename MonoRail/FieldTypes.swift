@@ -5,29 +5,13 @@ import Foundation
 /////////////////
 // Field Types
 
-internal var manyAssociationKey: UInt8 = 25
-
-public extension Array {
-    
-    var modelsPersisted:Bool {
-        get {
-            guard let persisted = objc_getAssociatedObject(self, &manyAssociationKey) as? Bool else {
-                return false
-            }
-            return persisted
-        }
-        set(newValue) {
-            objc_setAssociatedObject(self, &manyAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-        }
-    }
-    
-   
-}
-
-public typealias EnumType = String
-
+public typealias Enumeration = String
 public typealias Number = NSNumber
 public typealias Boolean = NSNumber
+
+public extension String { static var Field:Optional<String> { return Optional.some(String()) } }
+public extension Number { static var Field:Optional<Number> { return Optional.some(Number(value: 1)) } }
+public struct Enum { public static var Field:Optional<String> { return Optional.some(Enumeration()) } }
 
 public extension NSNumber {
     
@@ -100,8 +84,3 @@ public extension NSNumber {
     
     
 }
-
-
-
-
-

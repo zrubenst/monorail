@@ -22,7 +22,7 @@ public extension Actionable {
     
     public static func get(id:String, success: @escaping (Self)->Void, failure:((NSError)->Void)? = nil) {
        
-        let url = Active.apiRootUrl + "/" + Self.modelApiPath() + Self.modelNamePlural() + "/" + id
+        let url = MonoRail.apiRootUrl + "/" + Self.modelApiPath() + Self.modelNamePlural() + "/" + id
         
         ActiveNetwork.call(.get, url: url, success: { (dict:Dictionary<String, Any?>) in
             

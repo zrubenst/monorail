@@ -2,6 +2,12 @@
 import UIKit
 
 /////////////////
+// Globals
+
+var activeModelTypeAssociatedHandle: UInt8 = 21
+
+
+/////////////////
 // Extensions
 
 internal extension NSObject {
