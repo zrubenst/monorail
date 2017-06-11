@@ -8,6 +8,7 @@ public protocol Modellable {
     static func modelName() -> String
     static func modelNamePlural() -> String
     
+    static func modelFieldTypes() -> Dictionary<String, ActiveModel.RawFieldType>
     static func modelFieldNames() -> [String]
     func modelGetValue(forKey key:String) -> Any?
     func modelSetValue(_ value:Any?, forKey key:String)
@@ -15,6 +16,7 @@ public protocol Modellable {
     func modelGetThis() -> ActiveModel
     static func modelGetNew() -> ActiveModel
     static func modelGetNewPersisted(id:String) -> ActiveModel
+    static func modelGetNewUnpersisted(id:String) -> ActiveModel
         
 }
 

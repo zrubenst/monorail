@@ -33,7 +33,7 @@ internal extension NSObject {
     }
     
     static var fieldNames:[String] {
-        return Mirror(reflecting: self.self).children.flatMap { $0.label }
+        return Mirror(reflecting: self.init()).children.flatMap { $0.label }
     }
     
 }

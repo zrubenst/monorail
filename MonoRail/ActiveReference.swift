@@ -18,7 +18,7 @@ public func References<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil) -> 
     
     let modelType = objc_getAssociatedObject(type, &activeModelTypeAssociatedHandle) as! String
     let customType:ActiveModel.CustomFieldType = (modelType == "many") ? .referencesMany : .references
-    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: nil)
+    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: nil, inner: nil)
     let model = T()
     model.registrationCustomField = custom
     return Optional.some(model)
@@ -27,12 +27,20 @@ public func References<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil) -> 
 
 /// ImbedsOne: Another model is embeded in the response for this model
 /// ImbedsMany: An array of other models is embedded in the response for this model
-public func Imbeds<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil) -> Optional<T> {
+public func Imbeds<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil, whenImbeded: Optional<T>? = nil) -> Optional<T> {
     
     let modelType = objc_getAssociatedObject(type, &activeModelTypeAssociatedHandle) as! String
     let customType:ActiveModel.CustomFieldType = (modelType == "many") ? .imbedsMany : .imbeds
     
-    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: nil)
+    var inner:ActiveModel.CustomField<T>? = nil
+    
+    if let imbedded:ActiveModel = whenImbeded as? ActiveModel {
+        if let custom:ActiveModel.CustomField<T> = imbedded.registrationCustomField as? ActiveModel.CustomField<T> {
+            inner = custom
+        }
+    }
+    
+    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: nil, inner: inner)
     let model = T()
     model.registrationCustomField = custom
     return Optional.some(model)
@@ -45,7 +53,7 @@ public func Has<T:ActiveModel>(_ type:T.Type, foreignKey:String? = nil) -> Optio
     let modelType = objc_getAssociatedObject(type, &activeModelTypeAssociatedHandle) as! String
     let customType:ActiveModel.CustomFieldType = (modelType == "many") ? .hasMany : .has
     
-    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: nil, foreignField: foreignKey)
+    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: nil, foreignField: foreignKey, inner: nil)
     let model = T()
     model.registrationCustomField = custom
     return Optional.some(model)
@@ -56,10 +64,15 @@ public func Has<T:ActiveModel>(_ type:T.Type, foreignKey:String? = nil) -> Optio
 public func BelongsTo<T:ActiveModel>(_ type:T.Type, foreignKey:String? = nil) -> Optional<T> {
     
     let modelType = objc_getAssociatedObject(type, &activeModelTypeAssociatedHandle) as! String
-    let customType:ActiveModel.CustomFieldType = (modelType == "many") ? .hasMany : .references
+    let customType:ActiveModel.CustomFieldType = (modelType == "many") ? .hasMany : .has
     
-    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: nil, foreignField: foreignKey)
+    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: nil, foreignField: foreignKey, inner: nil)
     let model = T()
     model.registrationCustomField = custom
     return Optional.some(model)
 }
+
+
+
+
+

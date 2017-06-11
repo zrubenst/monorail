@@ -15,23 +15,32 @@ public extension Serializable {
     }
     
     
-    public static func deserialize(data:NSDictionary) -> Self? {
+    public static func deserialize(data:NSDictionary, imbedded:Bool = false) -> Self? {
         
-        guard let id:String = extractId(data: data) else { return nil }
-        
-        let model = modelGetNewPersisted(id: id)
+        guard let id:String = extractId(data["id"]) else { return nil }
+
+        let model = imbedded ? modelGetNewUnpersisted(id: id) : modelGetNewPersisted(id: id)
         let fields = model.fieldNames
         let scheme = customScheme()
         
+        
         for field:String in fields {
             
-            guard let custom:ActiveModel.CustomField = scheme[field] else {
-                if data.allKeys.contains(where: { $0 as? String == field }) {
-                    safelySet(model: model, field: field, to: data[field])
-                }
+            guard var custom:ActiveModel.CustomField = scheme[field] else {
+                safelySet(model: model, field: field, to: data[field])
                 continue
             }
             
+            if imbedded && custom.inner != nil {
+                setCustomField(model: model, field: field, data: data, custom: custom.inner!, imbeded: imbedded)
+            } else {
+                setCustomField(model: model, field: field, data: data, custom: custom, imbeded: imbedded)
+            }
+    
+        }
+        
+        if imbedded {
+            model.persist()
         }
         
         return model as? Self
@@ -43,6 +52,78 @@ public extension Serializable {
 // Helpers
 
 public extension Serializable {
+    
+    static func setCustomField(model:ActiveModel, field:String, data:NSDictionary, custom:ActiveModel.CustomField<ActiveModel>, imbeded:Bool = false) {
+        
+        if custom.type == .references {
+            guard let referenceId:String = extractId(data[custom.alias!]) else { return }
+            let referenceModel = custom.model.init(id: referenceId, persisted: false)
+            safelySet(model: model, field: field, to: referenceModel)
+            return
+        }
+        
+        if custom.type == .referencesMany {
+            guard let referenceArray:NSArray = data[custom.alias!] as? NSArray else { return }
+            
+            var referencesModels = Array<ActiveModel>()
+            
+            for idData in referenceArray {
+                guard let id:String = extractId(idData) else { continue }
+                
+                let referenceModel = custom.model.init(id: id, persisted: false)
+                referencesModels.append(referenceModel)
+            }
+            
+            let manyModel = custom.model.init(models: referencesModels, persisted: true)
+            
+            safelySet(model: model, field: field, to: manyModel)
+            return
+        }
+        
+        if custom.type == .imbeds {
+            guard let imbedData:NSDictionary = data[custom.alias!] as? NSDictionary else { return }
+            guard let imbededModel = custom.model.deserialize(data: imbedData, imbedded: true) else { return }
+            
+            safelySet(model: model, field: field, to: imbededModel)
+            return
+        }
+        
+        if custom.type == .imbedsMany {
+            
+            guard let imbedArray:Array<NSDictionary> = data[custom.alias!] as? Array<NSDictionary> else { return }
+            
+            var models = Array<ActiveModel>()
+            
+            for imbedData:NSDictionary in imbedArray {
+                guard let imbededModel = custom.model.deserialize(data: imbedData, imbedded: true) else {
+                    return
+                }
+                models.append(imbededModel)
+            }
+            
+            let manyModel = custom.model.init(models: models, persisted: true)
+            
+            safelySet(model: model, field: field, to: manyModel)
+            return
+        }
+        
+        if custom.type == .has {
+            
+            let belongsTo = custom.model.init(referencesId: model.id, foreignKey: custom.foreignField!)
+            safelySet(model: model, field: field, to: belongsTo)
+            
+            return
+        }
+        
+        if custom.type == .hasMany {
+            
+            let belongsToMany = custom.model.init(manyReferenceId: model.id, foreignKey: custom.foreignField!)
+            safelySet(model: model, field: field, to: belongsToMany)
+            
+            return
+        }
+        
+    }
     
     static func deserialize(data:Dictionary<String, Any?>) -> Self? {
         return deserialize(data: data as NSDictionary)
@@ -61,18 +142,26 @@ public extension Serializable {
     
     static internal func safelySet(model: ActiveModel, field:String, to value:Any?) {
         
-        if !(value == nil || value is String || value is NSString || value is NSNumber) { return }
-        
+        let type = modelFieldTypes()[field]
         var val:Any? = nil
         
-//        if value
+        if type == .string && value is String {
+            val = value as! String
+        } else if type == .number && value is Number {
+            val = value as! Number
+        } else if type == .relation && value is ActiveModel {
+            val = value
+        } else {
+            return
+        }
         
+        model.modelSetValue(val, forKey: field)
     }
     
-    internal static func extractId(data:NSDictionary) -> String? {
-        if let id_num:NSNumber = data["id"] as? NSNumber {
+    internal static func extractId(_ id:Any?) -> String? {
+        if let id_num:NSNumber = id as? NSNumber {
             return id_num.stringValue
-        } else if let id_str:String = data["id"] as? String {
+        } else if let id_str:String = id as? String {
             return id_str
         }
         return nil
