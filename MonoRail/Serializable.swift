@@ -10,10 +10,105 @@ public protocol Serializable: Modellable {
 
 public extension Serializable {
     
-    public static func serialize(model:Self) -> Dictionary<String, Any?> {
-        return Dictionary<String, Any?>()
+    
+    
+    
+    public static func serialize(model:Self, action:ActiveModel.Action? = nil) -> Dictionary<String, Any?>? {
+        
+        guard let model = model as? ActiveModel else { return nil }
+        
+        let types = modelFieldTypes()
+        let scheme = customScheme()
+        
+        var dict:Dictionary<String, Any> = [:]
+        
+        for field in model.fieldNames {
+            
+            guard let type:ActiveModel.RawFieldType = types[field] else { continue }
+            
+            if type == .string {
+                dict[field.snakeCased] = model.modelGetValue(forKey: field) as? String
+                continue
+            } else if type == .number {
+                dict[field.snakeCased] = model.modelGetValue(forKey: field) as? Number
+                continue
+            }
+            
+            guard let custom:ActiveModel.CustomField = scheme[field] else { continue }
+            
+            if custom.type == .has || custom.type == .hasMany { continue }
+            
+            if custom.type == .references {
+                guard let related:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
+                
+                dict[custom.alias!] = related.id
+                continue
+            }
+            
+            if custom.type == .referencesMany {
+                guard let relatedMany:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
+                if !relatedMany.isArray { continue }
+                guard let relatedArray:Array<ActiveModel> = relatedMany._arrayCollection as? Array<ActiveModel> else { continue }
+                
+                var relatedIds:Array<String> = []
+                
+                for related:ActiveModel in relatedArray {
+                    relatedIds.append(related.id)
+                }
+                
+                dict[custom.alias!] = relatedIds
+                continue
+            }
+            
+            if custom.type == .imbeds {
+                guard let related:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
+                
+                dict[custom.foreignField!] = related.id
+                continue
+            }
+            
+            if custom.type == .imbedsMany {
+                guard let relatedMany:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
+                if !relatedMany.isArray { continue }
+                guard let relatedArray:Array<ActiveModel> = relatedMany._arrayCollection as? Array<ActiveModel> else { continue }
+                
+                var relatedIds:Array<String> = []
+                
+                for related:ActiveModel in relatedArray {
+                    relatedIds.append(related.id)
+                }
+                
+                dict[custom.alias!] = relatedIds
+                continue
+            }
+            
+        }
+        
+        if action == nil || modelJsonRoot(action: action!) == nil { return dict }
+        
+        let root = modelJsonRoot(action: action!)!
+        
+        return [root : dict]
     }
     
+    public static func deserialzie(response:Dictionary<String, Any?>, action:ActiveModel.Action) -> Self? {
+        return deserialzie(response: response as NSDictionary, action: action)
+    }
+    
+    public static func deserialzie(response:NSDictionary, action:ActiveModel.Action) -> Self? {
+        
+        var data:NSDictionary = response
+        
+        if modelJsonRoot(action: action) != nil {
+            if let modelData:NSDictionary = data[modelJsonRoot(action: action)!] as? NSDictionary {
+                data = modelData
+            } else {
+                return nil
+            }
+        }
+        
+        return deserialize(data: data)
+    }
     
     public static func deserialize(data:NSDictionary, imbedded:Bool = false) -> Self? {
         

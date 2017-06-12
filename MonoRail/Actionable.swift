@@ -7,12 +7,7 @@ public protocol Actionable: Serializable {
 
 public extension Actionable {
     
-    internal static var error:NSError { return NSError(domain: "An error occurred", code: 422, userInfo: nil) }
-    
-    internal func call() {
-        
-    }
-    
+    internal static var genericError:NSError { return NSError(domain: "An error occurred", code: 422, userInfo: nil) }
     
     public func save(success:(()->Void)? = nil, failure:((NSError)->Void)? = nil) {
         
@@ -26,21 +21,14 @@ public extension Actionable {
         
         ActiveNetwork.call(.get, url: url, success: { (dict:Dictionary<String, Any?>) in
             
-            guard let data:Dictionary<String, Any?> = dict[modelName()] as? Dictionary<String, Any?> else {
-                failure?(error)
-                return
-            }
-            
-            guard let model = deserialize(data: data) else {
-                failure?(error)
+            guard let model = deserialzie(response: dict, action: .get) else {
+                failure?(genericError)
                 return
             }
             
             success(model)
             
-        }, failure: { (error:NSError, data:Data?) in
-            failure?(error)
-        })
+        }, failure: { (error:NSError, data:Data?) in failure?(error) })
         
     }
     

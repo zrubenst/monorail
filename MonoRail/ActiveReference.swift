@@ -27,7 +27,7 @@ public func References<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil) -> 
 
 /// ImbedsOne: Another model is embeded in the response for this model
 /// ImbedsMany: An array of other models is embedded in the response for this model
-public func Imbeds<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil, whenImbeded: Optional<T>? = nil) -> Optional<T> {
+public func Imbeds<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil, referenceIdField:String?=nil, whenImbeded: Optional<T>? = nil) -> Optional<T> {
     
     let modelType = objc_getAssociatedObject(type, &activeModelTypeAssociatedHandle) as! String
     let customType:ActiveModel.CustomFieldType = (modelType == "many") ? .imbedsMany : .imbeds
@@ -40,7 +40,7 @@ public func Imbeds<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil, whenImb
         }
     }
     
-    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: nil, inner: inner)
+    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: referenceIdField, inner: inner)
     let model = T()
     model.registrationCustomField = custom
     return Optional.some(model)
@@ -59,7 +59,7 @@ public func Has<T:ActiveModel>(_ type:T.Type, foreignKey:String? = nil) -> Optio
     return Optional.some(model)
 }
 
-/// BelongsTo: Has a reference to a single model  |  alias for ReferencesOne
+/// BelongsTo: Is referenced by a single other model  |  alias for HasOne
 /// BelongsToMany: An array of models reference this model  |  alias for HasMany
 public func BelongsTo<T:ActiveModel>(_ type:T.Type, foreignKey:String? = nil) -> Optional<T> {
     

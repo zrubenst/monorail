@@ -465,7 +465,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
                 
                 fieldTypes[field] = .relation
                 
-                custom.field = field
+                custom.field = field.snakeCased.lowercased()
                 
                 if custom.alias == nil {
                     if custom.type == .references {
