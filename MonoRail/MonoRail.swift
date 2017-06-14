@@ -49,6 +49,7 @@ public class MonoRail {
             print("\n<<<<<<<<<<<      MonoRail Error      >>>>>>>>>>>")
             print(name + message)
             print("------------------------------------------------\n")
+            fatalError()
         }
         
         

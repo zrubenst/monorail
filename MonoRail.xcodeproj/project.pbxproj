@@ -113,7 +113,6 @@
 		AD81EF4F1EE8C506008CC149 /* MonoRail */ = {
 			isa = PBXGroup;
 			children = (
-				AD81EF691EE8C540008CC149 /* ActiveModel.swift */,
 				AD81EF851EE8C544008CC149 /* Active */,
 				AD81EF861EE8C54C008CC149 /* Networking */,
 				AD81EF881EE8C55E008CC149 /* Extensions */,
@@ -138,6 +137,7 @@
 		AD81EF851EE8C544008CC149 /* Active */ = {
 			isa = PBXGroup;
 			children = (
+				AD81EF691EE8C540008CC149 /* ActiveModel.swift */,
 				ADF68D961EECE82900173693 /* Protocols */,
 				AD81EF701EE8C540008CC149 /* Store.swift */,
 				AD81EF6D1EE8C540008CC149 /* Persist.swift */,

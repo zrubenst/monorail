@@ -19,7 +19,17 @@ public protocol NetworkingDelegate {
     func additionalParameters() -> Dictionary<String, Any>
 }
 
+struct NetworkResponse {
+    let data:Data?
+    let response:HTTPURLResponse?
+    let error:NSError?
+}
+
 public class Networking: UIView {
+    
+    
+    //////////////////////
+    // Asynchronous
     
     class func request(_ verb:NetworkVerb, url urlstring:String, parameters:Dictionary<String, Any>, headers:Dictionary<String, Any>, success:@escaping (Data, HTTPURLResponse)->Void, failure:@escaping (NSError, Data?)->Void) {
         
@@ -77,6 +87,72 @@ public class Networking: UIView {
         })
         
         task.resume()
+    }
+    
+    
+    //////////////////////
+    // Synchronous
+    
+    class func request(_ verb:NetworkVerb, url urlstring:String, parameters:Dictionary<String, Any>, headers:Dictionary<String, Any>) -> NetworkResponse {
+        
+        var urlstr = urlstring
+        
+        if verb == .get {
+            urlstr += "?" + parameters.asRequestParameters
+        }
+        
+        guard let url:URL = URL(string: urlstr) else {
+            return NetworkResponse(data: nil, response: nil, error: NSError(domain: "An error occurred", code: 430, userInfo: nil))
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = verb.method
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        if verb != .get {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            } catch {
+                return NetworkResponse(data: nil, response: nil, error: NSError(domain: "An error occurred", code: 430, userInfo: nil))
+            }
+        }
+        
+        for (key, value) in headers {
+            request.addValue(value as! String, forHTTPHeaderField: key)
+        }
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        var data: Data?
+        var urlresponse: URLResponse?
+        var error: Error?
+        
+        let task = session.dataTask(with: request, completionHandler: { somedata, aresponse, anerror in
+            data = somedata
+            urlresponse = aresponse
+            error = anerror
+            
+            semaphore.signal()
+        })
+        task.resume()
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        
+        guard let response:HTTPURLResponse = urlresponse as? HTTPURLResponse else {
+            return NetworkResponse(data: data, response: nil, error: NSError(domain: "An error occurred", code: 430, userInfo: nil))
+        }
+        
+        if error != nil {
+            return NetworkResponse(data: data, response: nil, error: NSError(domain: error!.localizedDescription, code: response.statusCode, userInfo: nil))
+        }
+        
+        if data == nil {
+            return NetworkResponse(data: data, response: nil, error: NSError(domain: "An error occurred", code: response.statusCode, userInfo: nil))
+        }
+        
+        return NetworkResponse(data: data, response: response, error: nil)
     }
     
 }

@@ -5,6 +5,7 @@ import UIKit
 // Globals
 
 var activeModelTypeAssociatedHandle: UInt8 = 21
+var activeModelImbedsAssociatedHandle: UInt8 = 22
 
 
 /////////////////

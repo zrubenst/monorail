@@ -43,8 +43,6 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     }
     
     public enum CustomFieldType {
-        case imbeds         // a model is imbeded within the response of this model
-        case imbedsMany     // an array of imbeded models within the response of this model
         case references     // a field in this model's response references the ID of another model  |  can also act as a BelongTo kind of
         case referencesMany // a field in this model's response is an array of reference IDs of other models  |  very rare
         case has            // another model references this model
@@ -57,15 +55,15 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         var field:String
         var alias:String?
         var foreignField:String?
-        var inner:CustomField<T>?
+        var imbedded:Bool
         
-        init(type:CustomFieldType, model:T.Type, field:String, alias:String?, foreignField:String?, inner:CustomField<T>?) {
+        init(type:CustomFieldType, model:T.Type, field:String, alias:String?, foreignField:String?, imbedded:Bool) {
             self.type = type
             self.model = model
             self.field = field
             self.alias = alias
             self.foreignField = foreignField
-            self.inner = inner
+            self.imbedded = imbedded
         }
         
     }
@@ -85,7 +83,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     /////////////////////////
     // Protocol Exposing Functions
     
-    private static var store:ActiveModel.Store { return ActiveModel.Store.from(self.self) }
+    internal static var store:ActiveModel.Store { return ActiveModel.Store.from(self.self) }
     public static func modelActions() -> [ActiveModel.Action] { return store.modelActions }
     public static func modelApiPath() -> String { return store.modelApiPath }
     public static func modelName() -> String { return store.modelName }
@@ -95,8 +93,14 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     public static func modelFieldTypes() -> Dictionary<String, ActiveModel.RawFieldType> { return fieldTypes }
     public func modelGetThis() -> ActiveModel { return self }
     public static func modelGetNew() -> ActiveModel { return self.init() }
-    public static func modelGetNewPersisted(id:String) -> ActiveModel { return self.init(id: id) }
-    public static func modelGetNewUnpersisted(id:String) -> ActiveModel { return self.init(id: id, persisted: false) }
+    public static func modelGetNewPersisted(id:String) -> ActiveModel {
+        guard let persisted = Persist.persisted(className: className, id: id) else { return self.init(id: id) }
+        return persisted
+    }
+    public static func modelGetNewUnpersisted(id:String) -> ActiveModel {
+        guard let persisted = Persist.persisted(className: className, id: id) else { return self.init(id: id, persisted: false) }
+        return persisted
+    }
     public func modelGetValue(forKey key:String) -> Any? { return self.value(forKeyPath:key) }
     public func modelSetValue(_ value:Any?, forKey key:String) { self.setValue(value, forKeyPath: key) }
     
@@ -113,6 +117,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     public static func customSerializer() -> ActiveSerializer? { return store.modelSerializer }
     public static func customDeserializer() -> ActiveDeserializer? { return store.modelDeserializer }
     public static func modelCustomFields() -> [ActiveModel.CustomField<ActiveModel>] { return store.modelCustomFields }
+    public func modelCustomFields() -> [ActiveModel.CustomField<ActiveModel>] { return type(of: self).modelCustomFields() }
     
     internal class func setStoreDefaults() {
         store.modelActions = [.get, .create, .update, .delete, .getMany]
@@ -137,7 +142,12 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     
     
     /////////////////////////
-    // Persistance (Syncing & Observers
+    // Persistance (Updating, Syncing & Observers)
+    
+    public func modelWasUpdated() {
+        // push changes to Persist when those changes are saved
+        if _isPersisted { Persist.push(synchronize: self) }
+    }
     
     private var _syncing = false
     var isSyncing:Bool { return _syncing }
@@ -219,11 +229,10 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         if keyPath == nil { return }
         let value = modelGetValue(forKey: keyPath!)
         if value is MonoRail.Error { return }
-        
-        if _isPersisted { Persist.push(synchronize: self) }
     }
     
     internal func persist() {
+        if _isPersisted { return }
         _isPersisted = true
         _isCreated = true
         addObservers()
@@ -271,6 +280,10 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         } else if let friend = Persist.persisted(like: self) {
             sync(from: friend)
         }
+    }
+    
+    convenience public init(id:Int, persist:Bool = true) {
+        self.init(id: "\(id)", persisted: persist)
     }
     
     deinit {
@@ -394,6 +407,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         setStoreDefaults()
         setupFieldTypes()
         register()
+        Persist.register(model: self)
         store.modelActivated = true
     }
     
@@ -414,12 +428,28 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     public static var One:ActiveModel.Type {
         let type = self.self
         objc_setAssociatedObject(type, &activeModelTypeAssociatedHandle, "one", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(type, &activeModelImbedsAssociatedHandle, "not_imbedded", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return type
     }
     
     public static var Many:ActiveModel.Type {
         let type = self.self
         objc_setAssociatedObject(type, &activeModelTypeAssociatedHandle, "many", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(type, &activeModelImbedsAssociatedHandle, "not_imbedded", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return type
+    }
+    
+    public static var ImbedsOne:ActiveModel.Type {
+        let type = self.self
+        objc_setAssociatedObject(type, &activeModelTypeAssociatedHandle, "one", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(type, &activeModelImbedsAssociatedHandle, "imbedded", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return type
+    }
+    
+    public static var ImbedsMany:ActiveModel.Type {
+        let type = self.self
+        objc_setAssociatedObject(type, &activeModelTypeAssociatedHandle, "many", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(type, &activeModelImbedsAssociatedHandle, "imbedded", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return type
     }
     
@@ -468,7 +498,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
                 custom.field = field.snakeCased.lowercased()
                 
                 if custom.alias == nil {
-                    if custom.type == .references {
+                    if custom.type == .references && !custom.imbedded {
                         custom.alias = field.snakeCased.lowercased() + "_id"
                     } else {
                         custom.alias = field.snakeCased.lowercased()
@@ -476,23 +506,16 @@ open class ActiveModel:NSObject, Actionable, Awakable {
                 }
                 
                 if custom.foreignField == nil {
-                    custom.foreignField = field.snakeCased.lowercased() + "_id"
-                }
-                
-                if custom.inner != nil {
-                    custom.inner!.field = field
-                    
-                    if custom.inner!.alias == nil {
-                        if custom.inner!.type == .references {
-                            custom.inner!.alias = field.snakeCased.lowercased() + "_id"
-                        } else {
-                            custom.inner!.alias = field.snakeCased.lowercased()
-                        }
+                    if custom.type == .references {
+                        custom.foreignField = field.snakeCased.lowercased() + "_id"
+                    } else if custom.type == .referencesMany {
+                        custom.foreignField = field.snakeCased.lowercased()
+                    } else if custom.type == .has {
+                        custom.foreignField = className.snakeCased.lowercased() + "_id"
+                    } else if custom.type == .hasMany {
+                        custom.foreignField = className.snakeCased.lowercased().pluralize()
                     }
                     
-                    if custom.inner!.foreignField == nil {
-                        custom.inner!.foreignField = field.snakeCased.lowercased() + "_id"
-                    }
                 }
                 
                 store.modelCustomFields.append(custom)
@@ -512,6 +535,22 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     /////////////////////////
     /////////////////////////
     
+    
+    
+    
+    
+    
+    
+    
+    //////////////////////
+    // Relationships
+    
+    public func same(as other:ActiveModel) -> Bool {
+        return self.id == other.id && self._isPersisted && other.className == self.className
+    }
+    
+    /////////////////////////
+    /////////////////////////
     
     
     

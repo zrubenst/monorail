@@ -9,9 +9,7 @@ public protocol Serializable: Modellable {
 }
 
 public extension Serializable {
-    
-    
-    
+
     
     public static func serialize(model:Self, action:ActiveModel.Action? = nil) -> Dictionary<String, Any?>? {
         
@@ -41,7 +39,9 @@ public extension Serializable {
             if custom.type == .references {
                 guard let related:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
                 
-                dict[custom.alias!] = related.id
+                let key = custom.imbedded ? custom.foreignField! : custom.alias!
+                
+                dict[key] = related.id
                 continue
             }
             
@@ -56,29 +56,9 @@ public extension Serializable {
                     relatedIds.append(related.id)
                 }
                 
-                dict[custom.alias!] = relatedIds
-                continue
-            }
-            
-            if custom.type == .imbeds {
-                guard let related:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
+                let key = custom.imbedded ? custom.foreignField! : custom.alias!
                 
-                dict[custom.foreignField!] = related.id
-                continue
-            }
-            
-            if custom.type == .imbedsMany {
-                guard let relatedMany:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
-                if !relatedMany.isArray { continue }
-                guard let relatedArray:Array<ActiveModel> = relatedMany._arrayCollection as? Array<ActiveModel> else { continue }
-                
-                var relatedIds:Array<String> = []
-                
-                for related:ActiveModel in relatedArray {
-                    relatedIds.append(related.id)
-                }
-                
-                dict[custom.alias!] = relatedIds
+                dict[key] = relatedIds
                 continue
             }
             
@@ -111,6 +91,7 @@ public extension Serializable {
     }
     
     public static func deserialize(data:NSDictionary, imbedded:Bool = false) -> Self? {
+        // important note. Imbedded in this context means that the current data is imbedded within another model's response
         
         guard let id:String = extractId(data["id"]) else { return nil }
 
@@ -121,17 +102,17 @@ public extension Serializable {
         
         for field:String in fields {
             
-            guard var custom:ActiveModel.CustomField = scheme[field] else {
+            guard let custom:ActiveModel.CustomField = scheme[field] else {
                 safelySet(model: model, field: field, to: data[field])
                 continue
             }
             
-            if imbedded && custom.inner != nil {
-                setCustomField(model: model, field: field, data: data, custom: custom.inner!, imbeded: imbedded)
+            if imbedded {
+                setCustomField(model: model, field: field, data: data, custom: custom, imbedded: false)
             } else {
-                setCustomField(model: model, field: field, data: data, custom: custom, imbeded: imbedded)
+                setCustomField(model: model, field: field, data: data, custom: custom, imbedded: custom.imbedded)
             }
-    
+            
         }
         
         if imbedded {
@@ -148,16 +129,17 @@ public extension Serializable {
 
 public extension Serializable {
     
-    static func setCustomField(model:ActiveModel, field:String, data:NSDictionary, custom:ActiveModel.CustomField<ActiveModel>, imbeded:Bool = false) {
+    static func setCustomField(model:ActiveModel, field:String, data:NSDictionary, custom:ActiveModel.CustomField<ActiveModel>, imbedded:Bool = false) {
+        // important note. Imbedded in this context is a flag for whether or not the data should be treated as imbedded
         
-        if custom.type == .references {
+        if custom.type == .references && !imbedded {
             guard let referenceId:String = extractId(data[custom.alias!]) else { return }
-            let referenceModel = custom.model.init(id: referenceId, persisted: false)
+            let referenceModel = custom.model.modelGetNewUnpersisted(id: referenceId)  //init(id: referenceId, persisted: false)
             safelySet(model: model, field: field, to: referenceModel)
             return
         }
         
-        if custom.type == .referencesMany {
+        if custom.type == .referencesMany && !imbedded {
             guard let referenceArray:NSArray = data[custom.alias!] as? NSArray else { return }
             
             var referencesModels = Array<ActiveModel>()
@@ -165,7 +147,7 @@ public extension Serializable {
             for idData in referenceArray {
                 guard let id:String = extractId(idData) else { continue }
                 
-                let referenceModel = custom.model.init(id: id, persisted: false)
+                let referenceModel = custom.model.modelGetNewUnpersisted(id: id)  //init(id: id, persisted: false)
                 referencesModels.append(referenceModel)
             }
             
@@ -175,34 +157,7 @@ public extension Serializable {
             return
         }
         
-        if custom.type == .imbeds {
-            guard let imbedData:NSDictionary = data[custom.alias!] as? NSDictionary else { return }
-            guard let imbededModel = custom.model.deserialize(data: imbedData, imbedded: true) else { return }
-            
-            safelySet(model: model, field: field, to: imbededModel)
-            return
-        }
-        
-        if custom.type == .imbedsMany {
-            
-            guard let imbedArray:Array<NSDictionary> = data[custom.alias!] as? Array<NSDictionary> else { return }
-            
-            var models = Array<ActiveModel>()
-            
-            for imbedData:NSDictionary in imbedArray {
-                guard let imbededModel = custom.model.deserialize(data: imbedData, imbedded: true) else {
-                    return
-                }
-                models.append(imbededModel)
-            }
-            
-            let manyModel = custom.model.init(models: models, persisted: true)
-            
-            safelySet(model: model, field: field, to: manyModel)
-            return
-        }
-        
-        if custom.type == .has {
+        if custom.type == .has && !imbedded {
             
             let belongsTo = custom.model.init(referencesId: model.id, foreignKey: custom.foreignField!)
             safelySet(model: model, field: field, to: belongsTo)
@@ -210,11 +165,38 @@ public extension Serializable {
             return
         }
         
-        if custom.type == .hasMany {
+        if custom.type == .hasMany && !imbedded {
             
             let belongsToMany = custom.model.init(manyReferenceId: model.id, foreignKey: custom.foreignField!)
             safelySet(model: model, field: field, to: belongsToMany)
             
+            return
+        }
+        
+        if (custom.type == .references || custom.type == .has) && imbedded {
+            guard let imbedData:NSDictionary = data[custom.alias!] as? NSDictionary else { return }
+            guard let imbeddedModel = custom.model.deserialize(data: imbedData, imbedded: true) else { return }
+            
+            safelySet(model: model, field: field, to: imbeddedModel)
+            return
+        }
+        
+        if (custom.type == .referencesMany || custom.type == .hasMany) && imbedded {
+            
+            guard let imbedArray:Array<NSDictionary> = data[custom.alias!] as? Array<NSDictionary> else { return }
+            
+            var models = Array<ActiveModel>()
+            
+            for imbedData:NSDictionary in imbedArray {
+                guard let imbeddedModel = custom.model.deserialize(data: imbedData, imbedded: true) else {
+                    return
+                }
+                models.append(imbeddedModel)
+            }
+            
+            let manyModel = custom.model.init(models: models, persisted: true)
+            
+            safelySet(model: model, field: field, to: manyModel)
             return
         }
         
