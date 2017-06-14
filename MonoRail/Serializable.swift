@@ -5,7 +5,7 @@ public protocol Serializable: Modellable {
     static func modelJsonRoot(action:ActiveModel.Action) -> String?
     static func customSerializer() -> ActiveSerializer?
     static func customDeserializer() -> ActiveDeserializer?
-    static func modelCustomFields() -> [ActiveModel.CustomField<ActiveModel>]
+    static func modelCustomFields() -> [ActiveModel.CustomField]
 }
 
 public extension Serializable {
@@ -117,6 +117,8 @@ public extension Serializable {
         
         if imbedded {
             model.persist()
+        } else {
+            model.modelWasUpdated()
         }
         
         return model as? Self
@@ -129,7 +131,7 @@ public extension Serializable {
 
 public extension Serializable {
     
-    static func setCustomField(model:ActiveModel, field:String, data:NSDictionary, custom:ActiveModel.CustomField<ActiveModel>, imbedded:Bool = false) {
+    static func setCustomField(model:ActiveModel, field:String, data:NSDictionary, custom:ActiveModel.CustomField, imbedded:Bool = false) {
         // important note. Imbedded in this context is a flag for whether or not the data should be treated as imbedded
         
         if custom.type == .references && !imbedded {
@@ -206,9 +208,9 @@ public extension Serializable {
         return deserialize(data: data as NSDictionary)
     }
     
-    static internal func customScheme() -> [String : ActiveModel.CustomField<ActiveModel>] {
+    static internal func customScheme() -> [String : ActiveModel.CustomField] {
         
-        var scheme:[String : ActiveModel.CustomField<ActiveModel>] = [:] as! [String : ActiveModel.CustomField<ActiveModel>]
+        var scheme:[String : ActiveModel.CustomField] = [:] as! [String : ActiveModel.CustomField]
         
         for custom in modelCustomFields() {
             scheme[custom.field] = custom

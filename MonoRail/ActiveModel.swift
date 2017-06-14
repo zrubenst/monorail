@@ -49,15 +49,15 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         case hasMany        // multiple other models reference this model
     }
     
-    public class CustomField<T:ActiveModel> {
+    public class CustomField {
         let type:CustomFieldType
-        let model:T.Type
+        let model:ActiveModel.Type
         var field:String
         var alias:String?
         var foreignField:String?
         var imbedded:Bool
         
-        init(type:CustomFieldType, model:T.Type, field:String, alias:String?, foreignField:String?, imbedded:Bool) {
+        init(type:CustomFieldType, model:ActiveModel.Type, field:String, alias:String?, foreignField:String?, imbedded:Bool) {
             self.type = type
             self.model = model
             self.field = field
@@ -116,8 +116,8 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     public static func modelJsonRoot(action:ActiveModel.Action) -> String? { return store.modelJsonRoot[action] ?? nil }
     public static func customSerializer() -> ActiveSerializer? { return store.modelSerializer }
     public static func customDeserializer() -> ActiveDeserializer? { return store.modelDeserializer }
-    public static func modelCustomFields() -> [ActiveModel.CustomField<ActiveModel>] { return store.modelCustomFields }
-    public func modelCustomFields() -> [ActiveModel.CustomField<ActiveModel>] { return type(of: self).modelCustomFields() }
+    public static func modelCustomFields() -> [ActiveModel.CustomField] { return store.modelCustomFields }
+    public func modelCustomFields() -> [ActiveModel.CustomField] { return type(of: self).modelCustomFields() }
     
     internal class func setStoreDefaults() {
         store.modelActions = [.get, .create, .update, .delete, .getMany]
@@ -146,7 +146,8 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     
     public func modelWasUpdated() {
         // push changes to Persist when those changes are saved
-        if _isPersisted { Persist.push(synchronize: self) }
+//        Persist.reg
+//        if _isPersisted { Persist.push(synchronize: self) }
     }
     
     private var _syncing = false

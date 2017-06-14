@@ -19,16 +19,19 @@ public class Persist {
         
         if let instances:Array<ActiveModel> = shared.table[identifier] {
             
-            var shouldAppend = true
+//            var shouldAppend = true
+//            
+//            for instance in instances {
+//                if instance == register { shouldAppend = false }
+//            }
             
             for instance in instances {
-                instance.sync(from: register)
-                if instance == register { shouldAppend = false }
+                if instance == register { return }
             }
             
-            if shouldAppend { shared.table[identifier]!.append(register) }
+//            if shouldAppend { shared.table[identifier]!.append(register) }
             
-            return
+//            return
         }
         
         shared.table[identifier] = [register]
@@ -36,6 +39,8 @@ public class Persist {
     
     internal class func push<T:ActiveModel>(synchronize newest:T) {
         let identifier = newest.modelGetInstanceID()
+        
+        if !newest.modelPersisted { return }
         
         if !isRegistered(register: newest) {
             register(newest)
@@ -105,6 +110,7 @@ public class Persist {
     // Instance scope helpers
     
     internal class func persistRelationships(from updated:ActiveModel) {
+    
     
         
         
