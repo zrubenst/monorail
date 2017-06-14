@@ -135,7 +135,9 @@ public extension Serializable {
         // important note. Imbedded in this context is a flag for whether or not the data should be treated as imbedded
         
         if custom.type == .references && !imbedded {
-            guard let referenceId:String = extractId(data[custom.alias!]) else { return }
+            guard let referenceId:String = extractId(data[custom.foreignField!]) else {
+                return
+            }
             let referenceModel = custom.model.modelGetNewUnpersisted(id: referenceId)  //init(id: referenceId, persisted: false)
             safelySet(model: model, field: field, to: referenceModel)
             return

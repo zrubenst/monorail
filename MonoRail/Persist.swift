@@ -18,20 +18,9 @@ public class Persist {
         let identifier = register.modelGetInstanceID()
         
         if let instances:Array<ActiveModel> = shared.table[identifier] {
-            
-//            var shouldAppend = true
-//            
-//            for instance in instances {
-//                if instance == register { shouldAppend = false }
-//            }
-            
             for instance in instances {
                 if instance == register { return }
             }
-            
-//            if shouldAppend { shared.table[identifier]!.append(register) }
-            
-//            return
         }
         
         shared.table[identifier] = [register]
@@ -111,8 +100,31 @@ public class Persist {
     
     internal class func persistRelationships(from updated:ActiveModel) {
     
-    
+//        let fields = updated.modelCustomFields()
+//        let table = tableByType()
+//        
+//        for custom in fields {
+//            
+//            let typeName = custom.model.className
+//            guard let foreign = custom.foreignField else { continue }
+//            
+//            guard let instances = table[typeName] else  { continue }
+//            if instances.first == nil { continue }
+//            let scheme = type(of: instances.first!).customScheme()
+//            
+//            for instance in instances {
+//                if !instance.modelPersisted { continue } // instance is not persisted, thus ignore it
+//                
+//                guard let otherCustom = scheme
+//                
+//                // check if
+//                if updated
+//                
+//            }
+//            
+//        }
         
+        // dont forget to check if the model is persisted!!
         
     }
     

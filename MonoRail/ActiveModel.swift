@@ -145,9 +145,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     // Persistance (Updating, Syncing & Observers)
     
     public func modelWasUpdated() {
-        // push changes to Persist when those changes are saved
-//        Persist.reg
-//        if _isPersisted { Persist.push(synchronize: self) }
+        if _isPersisted { Persist.push(synchronize: self) }
     }
     
     private var _syncing = false
@@ -192,51 +190,16 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         
         if !_isPersisted {
             _isPersisted = true
-            addObservers()
         }
         
         syncingEnded()
-    }
-    
-    private var _obseversAdded:Bool = false
-    private var _observerContext = 29
-    private func addObservers() {
-        if isArray { return }
-
-        for field in self.fieldNames {
-            self.addObserver(self, forKeyPath: field, options: [.new, .old], context: &_observerContext)
-        }
-        _obseversAdded = true
-        if _isPersisted { Persist.register(self) }
-    }
-    
-    private func removeObservers() {
-        if isArray { return }
-        if !_obseversAdded { return }
-        for field in self.fieldNames {
-            self.removeObserver(self, forKeyPath: field, context: &_observerContext)
-        }
-        if _isPersisted { Persist.remove(self) }
-    }
-    
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard context == &_observerContext else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
-        }
-        
-        if isArray { return }
-        if isSyncing { return }
-        if keyPath == nil { return }
-        let value = modelGetValue(forKey: keyPath!)
-        if value is MonoRail.Error { return }
     }
     
     internal func persist() {
         if _isPersisted { return }
         _isPersisted = true
         _isCreated = true
-        addObservers()
+        Persist.push(synchronize: self)
     }
     
     /////////////////////////
@@ -276,11 +239,10 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         _isCreated = true
         _isPersisted = persisted
         resetFields()
-        if persisted {
-            addObservers()
-        } else if let friend = Persist.persisted(like: self) {
+        if !persisted, let friend = Persist.persisted(like: self) {
             sync(from: friend)
         }
+        Persist.register(self)
     }
     
     convenience public init(id:Int, persist:Bool = true) {
@@ -288,7 +250,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     }
     
     deinit {
-        removeObservers()
+        Persist.remove(self)
     }
 
     /////////////////////////
@@ -516,7 +478,6 @@ open class ActiveModel:NSObject, Actionable, Awakable {
                     } else if custom.type == .hasMany {
                         custom.foreignField = className.snakeCased.lowercased().pluralize()
                     }
-                    
                 }
                 
                 store.modelCustomFields.append(custom)
