@@ -55,14 +55,16 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         var field:String
         var alias:String?
         var foreignField:String?
+        var inverseOf:String?
         var imbedded:Bool
         
-        init(type:CustomFieldType, model:ActiveModel.Type, field:String, alias:String?, foreignField:String?, imbedded:Bool) {
+        init(type:CustomFieldType, model:ActiveModel.Type, field:String, alias:String?, foreignField:String?, inverseOf:String?=nil, imbedded:Bool) {
             self.type = type
             self.model = model
             self.field = field
             self.alias = alias
             self.foreignField = foreignField
+            self.inverseOf = inverseOf
             self.imbedded = imbedded
         }
         
@@ -149,7 +151,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     }
     
     private var _syncing = false
-    var isSyncing:Bool { return _syncing }
+    internal var isSyncing:Bool { return _syncing }
     
     private func syncingBegan() {
         _syncing = true
@@ -218,10 +220,10 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     // Instance variables and Basic Initializers
     
     private var _isCreated:Bool = false
-    public var modelCreated:Bool { return _isCreated }
+    public var isCreated:Bool { return _isCreated }
     
     internal var _isPersisted:Bool = false
-    public var modelPersisted:Bool { return _isPersisted }
+    public var isPersisted:Bool { return _isPersisted }
     
     private var _id:String = ""
     public var id:String { return _id }
@@ -283,7 +285,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         super.init()
         _isPersisted = persisted
         _isArray = true
-        _arrayCollection = models as NSArray
+        _arrayCollection = models as! NSMutableArray
         resetFields()
     }
     
@@ -345,10 +347,42 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     // Arrayable
     
     private var _isArray:Bool = false
-    var isArray:Bool { return _isArray }
+    public var isArray:Bool { return _isArray }
     
-    public var _arrayCollection: NSArray = []
+    public var _arrayCollection: NSMutableArray = []
     public var _arrayCurrent: Int = 0
+    
+    public func contains(_ model:ActiveModel) -> Bool {
+        guard let array:Array<ActiveModel> = _arrayCollection as? Array<ActiveModel> else { return false }
+        
+        for m in array {
+            if m.same(as: model) { return true }
+        }
+        
+        return false
+    }
+    
+    public func add(_ model:ActiveModel) {
+        if !_isArray || _belongs { return }
+        
+        _arrayCollection.add(model)
+    }
+    
+    public func remove(_ model:ActiveModel) {
+        if !_isArray || _belongs { return }
+        
+        _arrayCollection.remove(model)
+    }
+    
+    internal func forceAdd(_ model:ActiveModel) {
+        if !_isArray { return }
+        _arrayCollection.add(model)
+    }
+    
+    internal func forceRemove(_ model:ActiveModel) {
+        if !_isArray { return }
+        _arrayCollection.remove(model)
+    }
     
     /////////////////////////
     /////////////////////////
@@ -416,7 +450,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         return type
     }
     
-    var registrationCustomField:Any?
+    internal var _registrationCustomField:Any?
     
     private func resetFields() {
         if self.fieldNames.contains("_isPersisted") { return }
@@ -452,7 +486,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
                     continue
                 }
                 
-                guard let custom:CustomField = model.registrationCustomField as? CustomField else {
+                guard let custom:CustomField = model._registrationCustomField as? CustomField else {
                     continue
                 }
                 
@@ -460,24 +494,49 @@ open class ActiveModel:NSObject, Actionable, Awakable {
                 
                 custom.field = field.snakeCased.lowercased()
                 
-                if custom.alias == nil {
-                    if custom.type == .references && !custom.imbedded {
-                        custom.alias = field.snakeCased.lowercased() + "_id"
-                    } else {
-                        custom.alias = field.snakeCased.lowercased()
+                
+                if custom.imbedded {
+                    
+                    if custom.alias == nil {
+                        // alias points to the root of the imbed/imbedMany
+                        if custom.type == .references || custom.type == .has {
+                            custom.alias = field.snakeCased.lowercased()
+                        } else {
+                            custom.alias = field.snakeCased.lowercased()
+                        }
+                    }
+                    
+                    if custom.foreignField == nil {
+                        if custom.type == .references {
+                            custom.foreignField = custom.alias! + "_id" // foreign field (referenceIdField) here points to the field with the reference ID
+                        } else if custom.type == .referencesMany {
+                            custom.foreignField = custom.alias! // foreign field (referenceIdField) here points to the root of the array of reference IDs
+                        }
+                    }
+                    
+                } else {
+                    if custom.alias == nil {
+                        if custom.type == .references {
+                            custom.alias = field.snakeCased.lowercased() + "_id"
+                        } else if custom.type == .referencesMany {
+                            custom.alias = field.snakeCased.lowercased()
+                        }
+                    }
+                    
+                    if custom.foreignField == nil {
+                        if custom.type == .references {
+                            custom.foreignField = custom.alias!// foreign field (referenceIdField) here points to the field with the reference ID
+                        } else if custom.type == .referencesMany {
+                            custom.foreignField = custom.alias! // foreign field (referenceIdField) here points to the root of the array of reference IDs
+                        }
                     }
                 }
                 
-                if custom.foreignField == nil {
-                    if custom.type == .references {
-                        custom.foreignField = field.snakeCased.lowercased() + "_id"
-                    } else if custom.type == .referencesMany {
-                        custom.foreignField = field.snakeCased.lowercased()
-                    } else if custom.type == .has {
-                        custom.foreignField = className.snakeCased.lowercased() + "_id"
-                    } else if custom.type == .hasMany {
-                        custom.foreignField = className.snakeCased.lowercased().pluralize()
-                    }
+                
+                // if the type is a Has/HasMany...
+                // foreign field is the foreign key that makes reference to this model from the other model
+                if custom.foreignField == nil && (custom.type == .has || custom.type == .hasMany) {
+                    custom.foreignField = className.snakeCased.lowercased() + "_id"
                 }
                 
                 store.modelCustomFields.append(custom)
@@ -511,6 +570,49 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         return self.id == other.id && self._isPersisted && other.className == self.className
     }
     
+    internal func isReference(to other:ActiveModel) -> Bool {
+        
+        if isArray {
+            guard let array:Array<ActiveModel> = _arrayCollection as? Array<ActiveModel> else { return false }
+            
+            for model in array {
+                if other.isArray { return model.contains(other) }
+                
+                return model.same(as: other)
+            }
+        }
+        
+        if other.isArray {
+            return other.contains(self)
+        }
+        
+        return self.same(as: other)
+    }
+    
+    internal func backwardsReference(field:String, reference:ActiveModel) {
+        
+        if let value:ActiveModel = self.modelGetValue(forKey: field) as? ActiveModel {
+            if value.isArray {
+                value.forceAdd(reference)
+                return
+            }
+        }
+        
+        self.modelSetValue(reference, forKey: field)
+    }
+    
+    internal func dereference(field:String, reference:ActiveModel) {
+        
+        guard let value:ActiveModel = self.modelGetValue(forKey: field) as? ActiveModel else { return }
+        
+        if value.isArray {
+            value.forceRemove(reference)
+            return
+        }
+        
+        self.modelSetValue(nil, forKey: field)
+    }
+
     /////////////////////////
     /////////////////////////
     
@@ -525,13 +627,13 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     // Belonging
     
     private var _belongs:Bool = false
-    var modelBelongs:Bool { return _belongs }
+    internal var modelBelongs:Bool { return _belongs }
     
     private var _belongingForeignKey:String?
-    var modelBelongingForeignKey:String? { return _belongingForeignKey }
+    internal var modelBelongingForeignKey:String? { return _belongingForeignKey }
     
     private var _belongingForeignID:String?
-    var modelBelongingForeignId:String? { return _belongingForeignID }
+    internal var modelBelongingForeignId:String? { return _belongingForeignID }
     
     /////////////////////////
     /////////////////////////

@@ -14,16 +14,17 @@ public extension ActiveReference {
 
 /// ReferencesOne: A reference to an ID of another model is present
 /// ReferencesMany: Uncommon. An array of references to another model by ID is present
-public func References<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil, referenceIdField:String?=nil) -> Optional<T> {
+public func References<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil, referenceIdField:String?=nil, inverseOf:String?=nil) -> Optional<T> {
     
     let modelType = objc_getAssociatedObject(type, &activeModelTypeAssociatedHandle) as! String
     let imbedsType = objc_getAssociatedObject(type, &activeModelImbedsAssociatedHandle) as! String
     let imbedded = imbedsType == "imbedded"
     let customType:ActiveModel.CustomFieldType = (modelType == "many") ? .referencesMany : .references
     
-    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: referenceIdField, imbedded: imbedded)
+    let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: referenceIdField,
+                                         inverseOf: inverseOf,  imbedded: imbedded)
     let model = T()
-    model.registrationCustomField = custom
+    model._registrationCustomField = custom
     return Optional.some(model)
 }
 
@@ -38,7 +39,7 @@ public func Has<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil, foreignKey
     let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: foreignKey, imbedded: imbedded)
     custom.imbedded = imbedsType == "imbedded"
     let model = T()
-    model.registrationCustomField = custom
+    model._registrationCustomField = custom
     return Optional.some(model)
 }
 
@@ -54,7 +55,7 @@ public func BelongsTo<T:ActiveModel>(_ type:T.Type, aliasing:String? = nil, fore
     let custom = ActiveModel.CustomField(type: customType, model: type, field: "", alias: aliasing, foreignField: foreignKey, imbedded: imbedded)
     custom.imbedded = imbedsType == "imbedded"
     let model = T()
-    model.registrationCustomField = custom
+    model._registrationCustomField = custom
     return Optional.some(model)
 }
 

@@ -29,7 +29,7 @@ public class Persist {
     internal class func push<T:ActiveModel>(synchronize newest:T) {
         let identifier = newest.modelGetInstanceID()
         
-        if !newest.modelPersisted { return }
+        if !newest.isPersisted { return }
         
         if !isRegistered(register: newest) {
             register(newest)
@@ -99,33 +99,57 @@ public class Persist {
     // Instance scope helpers
     
     internal class func persistRelationships(from updated:ActiveModel) {
-    
-//        let fields = updated.modelCustomFields()
-//        let table = tableByType()
-//        
-//        for custom in fields {
-//            
-//            let typeName = custom.model.className
-//            guard let foreign = custom.foreignField else { continue }
-//            
-//            guard let instances = table[typeName] else  { continue }
-//            if instances.first == nil { continue }
-//            let scheme = type(of: instances.first!).customScheme()
-//            
-//            for instance in instances {
-//                if !instance.modelPersisted { continue } // instance is not persisted, thus ignore it
-//                
-//                guard let otherCustom = scheme
-//                
-//                // check if
-//                if updated
-//                
-//            }
-//            
-//        }
         
-        // dont forget to check if the model is persisted!!
+        let fields = updated.modelCustomFields()
+        let table = tableByType()
         
+        // loop through this models custom fields
+        for custom in fields {
+            
+            let typeName = custom.model.className
+            var inverse = custom.inverseOf
+            
+            // grab an array of all instances of the same type as the type this custom fields relates to
+            guard let instances = table[typeName] else  { continue }
+            if instances.first == nil { continue }
+            let scheme = type(of: instances.first!).customScheme()
+            
+            // get the inverseOf this custom field if it isn't already defined
+            if inverse == nil {
+                if scheme[updated.className.snakeCased.lowercased() + "_id"] != nil {
+                    inverse = updated.className.snakeCased.lowercased() + "_id"
+                } else if scheme[updated.className.snakeCased.pluralize().lowercased()] != nil {
+                    inverse = updated.className.snakeCased.pluralize().lowercased()
+                } else {
+                    continue // backout of this custom field if it cant be found (may not be backwards referenced, or there is an error)
+                }
+            }
+            
+            let currentValue:ActiveModel? = updated.modelGetValue(forKey: custom.field) as? ActiveModel
+            
+            // loop through all of the instances
+            for instance in instances {
+                if !instance.isPersisted { continue } // if instance is not persisted, ignore it
+                
+                
+                
+                // if the instance is referenced by this model, backwards reference the instance
+                if let current:ActiveModel = currentValue {
+                    if current.isReference(to: instance) {
+                        instance.backwardsReference(field: inverse!, reference: updated)
+                        continue
+                    }
+                }
+                
+                // grab the value for for the inverseOf field on the insatnce
+                guard let related:ActiveModel = instance.modelGetValue(forKey: inverse!) as? ActiveModel else { continue }
+                
+                // if that field references this model...
+                if related.isReference(to: updated) {
+                    instance.dereference(field: inverse!, reference: updated) // dereference it
+                }
+            }
+        }
     }
     
     internal class func tableByType() -> [String:[ActiveModel]] {
