@@ -94,6 +94,17 @@ public class Persist {
         
     }
     
+    internal class func destroy(_ removal:ActiveModel) {
+        let identifier = removal.modelGetInstanceID()
+        
+        if let instances:Array<ActiveModel> = shared.table[identifier] {
+            for instance in instances {
+                instance.destroy()
+            }
+            shared.table.removeValue(forKey: identifier)
+        }
+    }
+    
     
     ////////////////////
     // Instance scope helpers
@@ -130,8 +141,6 @@ public class Persist {
             // loop through all of the instances
             for instance in instances {
                 if !instance.isPersisted { continue } // if instance is not persisted, ignore it
-                
-                
                 
                 // if the instance is referenced by this model, backwards reference the instance
                 if let current:ActiveModel = currentValue {

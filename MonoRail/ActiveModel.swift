@@ -30,7 +30,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     
     public class func permit(actions:ActiveModel.Action...) { store.modelActions = actions }
     
-    public class func json(root:String?, for action:ActiveModel.Action) { store.modelJsonRoot[action] = root }
+    public class func json(root:String?) { store.modelJsonRoot = root }
     public class func set(serializer:ActiveSerializer?) { store.modelSerializer = serializer }
     public class func set(deserializer:ActiveDeserializer?) { store.modelDeserializer = deserializer }
     
@@ -52,7 +52,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     public class CustomField {
         let type:CustomFieldType
         let model:ActiveModel.Type
-        var field:String
+        var field:String = ""
         var alias:String?
         var foreignField:String?
         var inverseOf:String?
@@ -115,7 +115,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         return MonoRail.Error()
     }
     
-    public static func modelJsonRoot(action:ActiveModel.Action) -> String? { return store.modelJsonRoot[action] ?? nil }
+    public static func modelJsonRoot(action:ActiveModel.Action) -> String? { return store.modelJsonRoot == nil ? nil : action == .getMany ? store.modelJsonRoot!.pluralize() : store.modelJsonRoot  }
     public static func customSerializer() -> ActiveSerializer? { return store.modelSerializer }
     public static func customDeserializer() -> ActiveDeserializer? { return store.modelDeserializer }
     public static func modelCustomFields() -> [ActiveModel.CustomField] { return store.modelCustomFields }
@@ -126,9 +126,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         store.modelApiPath = ""
         store.modelName = className.lowercased()
         store.modelNamePlural = className.lowercased().pluralize()
-        store.modelJsonRoot = [.get : store.modelName, .create : store.modelName,
-                               .update : store.modelName, .delete : store.modelName,
-                               .getMany : store.modelNamePlural]
+        store.modelJsonRoot = store.modelName
     }
     
     /////////////////////////
@@ -147,7 +145,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     // Persistance (Updating, Syncing & Observers)
     
     public func modelWasUpdated() {
-        if _isPersisted { Persist.push(synchronize: self) }
+        Persist.push(synchronize: self)
     }
     
     private var _syncing = false
@@ -161,20 +159,21 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         _syncing = false
     }
     
-    public func sync(from:ActiveModel) {
+    @discardableResult
+    public func sync(from:ActiveModel) -> Bool {
         
-        if isArray { return }
-        if isSyncing { return }
+        if isArray { return false }
+        if isSyncing { return false }
         syncingBegan()
         
         if type(of: self) != type(of: self) {
             MonoRail.Error.warn(message: "Attempted to sync with a different instance of type \(from.self.className)", model: self.self)
-            return
+            return false
         }
         
         if id != from.id && !self.id.isEmpty {
             MonoRail.Error.warn(message: "Attempted to sync with differing IDs", model: self.self)
-            return
+            return false
         }
         
         if id.isEmpty {
@@ -195,13 +194,21 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         }
         
         syncingEnded()
+        return true
     }
     
     internal func persist() {
-        if _isPersisted { return }
         _isPersisted = true
         _isCreated = true
         Persist.push(synchronize: self)
+    }
+    
+    internal func destroy() {
+        _isPersisted = false
+        _isCreated = false
+        _id = ""
+        resetFields()
+        Persist.remove(self)
     }
     
     /////////////////////////
@@ -362,6 +369,13 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         return false
     }
     
+    internal func set(new models:[ActiveModel]) {
+        if !isArray { return }
+        
+        _arrayCollection = models as! NSMutableArray
+        
+    }
+    
     public func add(_ model:ActiveModel) {
         if !_isArray || _belongs { return }
         
@@ -422,34 +436,6 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     //////////////////////
     // Registerable
     
-    public static var One:ActiveModel.Type {
-        let type = self.self
-        objc_setAssociatedObject(type, &activeModelTypeAssociatedHandle, "one", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(type, &activeModelImbedsAssociatedHandle, "not_imbedded", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return type
-    }
-    
-    public static var Many:ActiveModel.Type {
-        let type = self.self
-        objc_setAssociatedObject(type, &activeModelTypeAssociatedHandle, "many", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(type, &activeModelImbedsAssociatedHandle, "not_imbedded", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return type
-    }
-    
-    public static var ImbedsOne:ActiveModel.Type {
-        let type = self.self
-        objc_setAssociatedObject(type, &activeModelTypeAssociatedHandle, "one", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(type, &activeModelImbedsAssociatedHandle, "imbedded", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return type
-    }
-    
-    public static var ImbedsMany:ActiveModel.Type {
-        let type = self.self
-        objc_setAssociatedObject(type, &activeModelTypeAssociatedHandle, "many", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(type, &activeModelImbedsAssociatedHandle, "imbedded", objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return type
-    }
-    
     internal var _registrationCustomField:Any?
     
     private func resetFields() {
@@ -466,88 +452,77 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     
     private class func setupFieldTypes() {
         if fieldNames.contains("_isPersisted") { return }
-        
-        MonoRail.Error.turnOffErrors()
-        
+                
         let model = self.init(resetFields: false)
         var fieldTypes = Dictionary<String, RawFieldType>()
         
         for field in model.fieldNames {
             
-            let value = model.modelGetValue(forKey: field)
-            
-            if value is String {
-                fieldTypes[field] = .string
-            } else if value is Number {
-                fieldTypes[field] = .number
-            } else if value is ActiveModel {
+            guard let custom = store.modelRegistrationFields[field] else {
+                let value = model.modelGetValue(forKey: field)
                 
-                guard let model = value as? ActiveModel else {
-                    continue
+                if value is String {
+                    fieldTypes[field] = .string
+                } else if value is Number {
+                    fieldTypes[field] = .number
                 }
                 
-                guard let custom:CustomField = model._registrationCustomField as? CustomField else {
-                    continue
-                }
-                
-                fieldTypes[field] = .relation
-                
-                custom.field = field.snakeCased.lowercased()
-                
-                
-                if custom.imbedded {
-                    
-                    if custom.alias == nil {
-                        // alias points to the root of the imbed/imbedMany
-                        if custom.type == .references || custom.type == .has {
-                            custom.alias = field.snakeCased.lowercased()
-                        } else {
-                            custom.alias = field.snakeCased.lowercased()
-                        }
-                    }
-                    
-                    if custom.foreignField == nil {
-                        if custom.type == .references {
-                            custom.foreignField = custom.alias! + "_id" // foreign field (referenceIdField) here points to the field with the reference ID
-                        } else if custom.type == .referencesMany {
-                            custom.foreignField = custom.alias! // foreign field (referenceIdField) here points to the root of the array of reference IDs
-                        }
-                    }
-                    
-                } else {
-                    if custom.alias == nil {
-                        if custom.type == .references {
-                            custom.alias = field.snakeCased.lowercased() + "_id"
-                        } else if custom.type == .referencesMany {
-                            custom.alias = field.snakeCased.lowercased()
-                        }
-                    }
-                    
-                    if custom.foreignField == nil {
-                        if custom.type == .references {
-                            custom.foreignField = custom.alias!// foreign field (referenceIdField) here points to the field with the reference ID
-                        } else if custom.type == .referencesMany {
-                            custom.foreignField = custom.alias! // foreign field (referenceIdField) here points to the root of the array of reference IDs
-                        }
-                    }
-                }
-                
-                
-                // if the type is a Has/HasMany...
-                // foreign field is the foreign key that makes reference to this model from the other model
-                if custom.foreignField == nil && (custom.type == .has || custom.type == .hasMany) {
-                    custom.foreignField = className.snakeCased.lowercased() + "_id"
-                }
-                
-                store.modelCustomFields.append(custom)
-                
-            } else {
                 continue
             }
+                
+            fieldTypes[field] = .relation
+            
+            custom.field = field.snakeCased.lowercased()
+            
+            
+            if custom.imbedded {
+                
+                if custom.alias == nil {
+                    // alias points to the root of the imbed/imbedMany
+                    if custom.type == .references || custom.type == .has {
+                        custom.alias = field.snakeCased.lowercased()
+                    } else {
+                        custom.alias = field.snakeCased.lowercased()
+                    }
+                }
+                
+                if custom.foreignField == nil {
+                    if custom.type == .references {
+                        custom.foreignField = custom.alias! + "_id" // foreign field (referenceIdField) here points to the field with the reference ID
+                    } else if custom.type == .referencesMany {
+                        custom.foreignField = custom.alias! // foreign field (referenceIdField) here points to the root of the array of reference IDs
+                    }
+                }
+                
+            } else {
+                if custom.alias == nil {
+                    if custom.type == .references {
+                        custom.alias = field.snakeCased.lowercased() + "_id"
+                    } else if custom.type == .referencesMany {
+                        custom.alias = field.snakeCased.lowercased()
+                    }
+                }
+                
+                if custom.foreignField == nil {
+                    if custom.type == .references {
+                        custom.foreignField = custom.alias!// foreign field (referenceIdField) here points to the field with the reference ID
+                    } else if custom.type == .referencesMany {
+                        custom.foreignField = custom.alias! // foreign field (referenceIdField) here points to the root of the array of reference IDs
+                    }
+                }
+            }
+            
+            
+            // if the type is a Has/HasMany...
+            // foreign field is the foreign key that makes reference to this model from the other model
+            if custom.foreignField == nil && (custom.type == .has || custom.type == .hasMany) {
+                custom.foreignField = className.snakeCased.lowercased() + "_id"
+            }
+            
+            store.modelCustomFields.append(custom)
         }
         
         store.modelFieldTypes = fieldTypes
-        MonoRail.Error.turnOnErrors()
     }
     
     public enum RawFieldType { case string, number, relation }
@@ -652,7 +627,12 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     public func printOut(_ prefix:String = "", level:Int = 0, maxLevel:Int = 3) {
         
         if _isPersisted == false {
-            print(prefix + "\(self.className) (\(self.id))")
+            if _isArray {
+                print(prefix + "\(self.className) []")
+            } else {
+                print(prefix + "\(self.className) (\(self.id))")
+            }
+            
             print(prefix + "\tNot Persisted")
             return
         }
@@ -670,6 +650,14 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         
         if _isArray {
             print(prefix + "\(self.className) []")
+            if !_isPersisted {
+                print(prefix + "\tNot Persisted")
+                return
+            }
+            if _arrayCollection.count <= 0 {
+                print(prefix + "\tPersisted (empty)")
+                return
+            }
             for model in _arrayCollection as! Array<ActiveModel> {
                 model.printOut(prefix + "\t", level: level + 1, maxLevel: maxLevel)
             }

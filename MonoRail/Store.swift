@@ -11,12 +11,13 @@ internal extension ActiveModel {
         var modelNamePlural:String = ""
         var modelActivated:Bool = false
         
-        var modelJsonRoot:Dictionary<ActiveModel.Action, String?> = [:]
+        var modelJsonRoot:String? = nil
         var modelSerializer:ActiveSerializer? = nil
         var modelDeserializer:ActiveDeserializer? = nil
         
         var modelFieldTypes:Dictionary<String, RawFieldType> = [:]
         var modelCustomFields:[ActiveModel.CustomField] = [] as! [ActiveModel.CustomField]
+        var modelRegistrationFields:[String:ActiveModel.CustomField] = [:]
         
         class func from<T:ActiveModel>(_ classType:T.Type) -> ActiveModel.Store {
             let key = String(describing: classType.value(forKey: "self"))
@@ -29,6 +30,14 @@ internal extension ActiveModel {
             
             return store!
         }
+        
+        var name:String
+        
+        init(name:String) {
+            self.name = name
+        }
+        
+        
         
     }
     
@@ -45,7 +54,7 @@ internal extension ActiveModel {
             if hash.keys.contains(key) {
                 return
             }
-            hash[key] = ActiveModel.Store()
+            hash[key] = ActiveModel.Store(name: key)
         }
         
     }

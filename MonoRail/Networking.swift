@@ -14,30 +14,41 @@ public enum NetworkVerb: String {
 }
 
 public protocol NetworkingDelegate {
-    func updated(headers:Dictionary<String, Any>)
-    func additionalHeaders() -> Dictionary<String, Any>
-    func additionalParameters() -> Dictionary<String, Any>
+    func newResponse(headers:Dictionary<String, Any?>)
+    func additionalHeaders() -> Dictionary<String, Any?>
+    func additionalParameters() -> Dictionary<String, Any?>
 }
 
-struct NetworkResponse {
+public struct NetworkResponse {
     let data:Data?
     let response:HTTPURLResponse?
     let error:NSError?
 }
 
-public class Networking: UIView {
+public class Networking {
     
+    
+    private static var shared:Networking = Networking()
+    private var delegate:NetworkingDelegate?
+    
+    public static var delegate:NetworkingDelegate? {
+        get {
+            return shared.delegate
+        }
+        set {
+            shared.delegate = newValue
+        }
+    }
     
     //////////////////////
     // Asynchronous
     
-    class func request(_ verb:NetworkVerb, url urlstring:String, parameters:Dictionary<String, Any>, headers:Dictionary<String, Any>, success:@escaping (Data, HTTPURLResponse)->Void, failure:@escaping (NSError, Data?)->Void) {
+    public class func request(_ verb:NetworkVerb, url urlstring:String, parameters:Dictionary<String, Any?>, headers:Dictionary<String, Any?>, success:@escaping (Data, HTTPURLResponse)->Void, failure:@escaping (NSError, Data?)->Void) {
         
-        var urlstr = urlstring
+        var parameters = parameters
+        parameters.merge(with: delegate?.additionalParameters())
         
-        if verb == .get {
-            urlstr += "?" + parameters.asRequestParameters
-        }
+        let urlstr = verb == .get ? urlstring + "?" + parameters.asRequestParameters : urlstring
         
         guard let url:URL = URL(string: urlstr) else {
             failure(NSError(domain: "An error occurred", code: 430, userInfo: nil), nil)
@@ -49,6 +60,9 @@ public class Networking: UIView {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        var headers = headers
+        headers.merge(with: delegate?.additionalHeaders())
+        
         if verb != .get {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
@@ -57,7 +71,7 @@ public class Networking: UIView {
                 return
             }
         }
-        
+                
         for (key, value) in headers {
             request.addValue(value as! String, forHTTPHeaderField: key)
         }
@@ -70,6 +84,10 @@ public class Networking: UIView {
                 guard let response:HTTPURLResponse = aresponse as? HTTPURLResponse else {
                     failure(NSError(domain: "An error occurred", code: 430, userInfo: nil), data)
                     return
+                }
+                
+                if let headers = response.allHeaderFields as? Dictionary<String, Any?> {
+                    delegate?.newResponse(headers: headers)
                 }
                 
                 if error != nil {
@@ -93,7 +111,7 @@ public class Networking: UIView {
     //////////////////////
     // Synchronous
     
-    class func request(_ verb:NetworkVerb, url urlstring:String, parameters:Dictionary<String, Any>, headers:Dictionary<String, Any>) -> NetworkResponse {
+    public class func request(_ verb:NetworkVerb, url urlstring:String, parameters:Dictionary<String, Any?>, headers:Dictionary<String, Any?>) -> NetworkResponse {
         
         var urlstr = urlstring
         
@@ -240,6 +258,11 @@ internal extension Dictionary {
         }
         
         return parameters.joined(separator: "&")
+    }
+    
+    mutating func merge(with dictionary: Dictionary?) {
+        if dictionary == nil { return }
+        dictionary!.forEach { updateValue($1, forKey: $0) }
     }
 
 }

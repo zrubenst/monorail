@@ -28,7 +28,11 @@ class AwakableAid {
 extension UIApplication {
     
     private static let runOnce: Void = {
+        MonoRail.Error.turnOnErrors()
+        MonoRail.Registration.start()
         AwakableAid.trigger()
+        MonoRail.Registration.end()
+        MonoRail.Error.turnOffErrors()
     }()
     
     override open var next: UIResponder? {
