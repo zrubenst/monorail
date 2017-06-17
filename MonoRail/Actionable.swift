@@ -120,7 +120,7 @@ public extension Actionable {
         return get(id: "\(id)")
     }
     
-    public static func get(where params:Dictionary<String, Any?>, success: @escaping ([Self])->Void, failure:((ActiveNetworkError)->Void)? = nil) {
+    public static func get(where params:Dictionary<String, Any?> = [:], success: @escaping ([Self])->Void, failure:((ActiveNetworkError)->Void)? = nil) {
         let url = MonoRail.apiRootUrl + "/" + Self.modelApiPath() + Self.modelNamePlural()
 
         ActiveNetwork.call(.get, url: url, parameters: params, success: { (dict:Dictionary<String, Any?>) in
@@ -137,7 +137,7 @@ public extension Actionable {
         })
     }
     
-    public static func get(where params:Dictionary<String, Any?>) -> [Self]? {
+    public static func get(where params:Dictionary<String, Any?> = [:]) -> [Self]? {
         let url = MonoRail.apiRootUrl + "/" + Self.modelApiPath() + Self.modelNamePlural()
         
         let response:ActiveNetworkResponse = ActiveNetwork.call(.get, url: url, parameters: params)

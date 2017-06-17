@@ -8,8 +8,13 @@ import Foundation
 public typealias Enumeration = String
 public typealias Number = NSNumber
 public typealias Boolean = NSNumber
+public typealias Hash = NSDictionary
+public typealias List = NSArray
 
 public extension String { static var Field:Optional<String> { return Optional.some(String()) } }
+public extension NSDictionary { static var Field:Optional<NSDictionary> { return Optional.some(NSDictionary()) } }
+public extension NSArray { static var Field:Optional<NSArray> { return Optional.some(NSArray()) } }
+public extension Date { static var Field:Optional<Date> { return Optional.some(Date()) } }
 public extension Number { static var Field:Optional<Number> { return Optional.some(Number(value: 1)) } }
 public struct Enum { public static var Field:Optional<String> { return Optional.some(Enumeration()) } }
 

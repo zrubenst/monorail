@@ -122,9 +122,9 @@ public extension Serializable {
         
         
         for field:String in fields {
-            
+                        
             guard let custom:ActiveModel.CustomField = scheme[field] else {
-                safelySet(model: model, field: field, to: data[field])
+                safelySet(model: model, field: field, to: data[field.snakeCased])
                 continue
             }
             
@@ -253,7 +253,15 @@ public extension Serializable {
             val = value as! Number
         } else if type == .relation && value is ActiveModel {
             val = value
-        } else {
+        } else if type == .dictionary && value is NSDictionary {
+            val = value
+        } else if type == .array && value is NSArray {
+            val = value
+        } else if type == .date && value is String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            val = formatter.date(from: value as! String)
+        }  else {
             return
         }
         

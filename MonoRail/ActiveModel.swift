@@ -365,6 +365,10 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     public var _arrayCollection: NSMutableArray = []
     public var _arrayCurrent: Int = 0
     
+    public func count() -> Int {
+        return _arrayCollection.count
+    }
+    
     public func contains(_ model:ActiveModel) -> Bool {
         guard let array:Array<ActiveModel> = _arrayCollection as? Array<ActiveModel> else { return false }
         
@@ -471,6 +475,12 @@ open class ActiveModel:NSObject, Actionable, Awakable {
                     fieldTypes[field] = .string
                 } else if value is Number {
                     fieldTypes[field] = .number
+                } else if value is NSDictionary {
+                    fieldTypes[field] = .dictionary
+                } else if value is NSArray {
+                    fieldTypes[field] = .array
+                } else if value is Date {
+                    fieldTypes[field] = .date
                 }
                 
                 continue
@@ -531,7 +541,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         store.modelFieldTypes = fieldTypes
     }
     
-    public enum RawFieldType { case string, number, relation }
+    public enum RawFieldType { case string, number, relation, dictionary, array, date }
     public static var fieldTypes:Dictionary<String, RawFieldType> { return store.modelFieldTypes }
     
     /////////////////////////
