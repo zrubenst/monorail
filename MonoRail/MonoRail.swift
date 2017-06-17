@@ -26,6 +26,17 @@ public class MonoRail {
         return shared.apiUrl
     }
     
+    internal class Registration {
+        
+        internal static var shared:Registration = Registration()
+        private var _registering:Bool = true
+        
+        class func start() { shared._registering = true }
+        class func end() { shared._registering = false }
+        static var active:Bool { return shared._registering }
+        
+    }
+    
     internal class Error {
         
         internal static var shared:Error = Error()

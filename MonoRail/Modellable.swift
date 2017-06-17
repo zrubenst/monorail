@@ -17,6 +17,8 @@ public protocol Modellable {
     static func modelGetNew() -> ActiveModel
     static func modelGetNewPersisted(id:String) -> ActiveModel
     static func modelGetNewUnpersisted(id:String) -> ActiveModel
+    
+    func sync(from:ActiveModel) -> Bool
         
 }
 

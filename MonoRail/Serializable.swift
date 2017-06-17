@@ -38,6 +38,7 @@ public extension Serializable {
             
             if custom.type == .references {
                 guard let related:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
+                if !related.isCreated { continue }
                 
                 let key = custom.imbedded ? custom.foreignField! : custom.alias!
                 
@@ -53,6 +54,7 @@ public extension Serializable {
                 var relatedIds:Array<String> = []
                 
                 for related:ActiveModel in relatedArray {
+                    if !related.isCreated { continue }
                     relatedIds.append(related.id)
                 }
                 
@@ -64,18 +66,14 @@ public extension Serializable {
             
         }
         
-        if action == nil || modelJsonRoot(action: action!) == nil { return dict }
-        
-        let root = modelJsonRoot(action: action!)!
-        
-        return [root : dict]
+        return dict
     }
     
-    public static func deserialzie(response:Dictionary<String, Any?>, action:ActiveModel.Action) -> Self? {
-        return deserialzie(response: response as NSDictionary, action: action)
+    public static func deserialize(response:Dictionary<String, Any?>, action:ActiveModel.Action) -> Self? {
+        return deserialize(response: response as NSDictionary, action: action)
     }
     
-    public static func deserialzie(response:NSDictionary, action:ActiveModel.Action) -> Self? {
+    public static func deserialize(response:NSDictionary, action:ActiveModel.Action) -> Self? {
         
         var data:NSDictionary = response
         
@@ -88,6 +86,21 @@ public extension Serializable {
         }
         
         return deserialize(data: data)
+    }
+    
+    public static func deserializeMany(data:NSDictionary) -> [Self]? {
+        guard let root:String = modelJsonRoot(action: .getMany) else { return nil }
+        guard let dataArray:NSArray = data[root] as? NSArray else { return nil }
+        var array:Array<Self> = []
+        
+        for dataElement in dataArray {
+            guard let dict:NSDictionary = dataElement as? NSDictionary else { return nil }
+            guard let model:Self = deserialize(data: dict) else { return nil }
+            
+            array.append(model)
+        }
+        
+        return array
     }
     
     public static func deserialize(data:NSDictionary, imbedded:Bool = false) -> Self? {
