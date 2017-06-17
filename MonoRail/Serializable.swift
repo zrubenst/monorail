@@ -3,8 +3,8 @@ import Foundation
 
 public protocol Serializable: Modellable {
     static func modelJsonRoot(action:ActiveModel.Action) -> String?
-    static func customSerializer() -> ActiveSerializer?
-    static func customDeserializer() -> ActiveDeserializer?
+    static func customDeserialize(dictionary: NSDictionary) -> Self?
+    static func customSerialize(model:ActiveModel, action:ActiveModel.Action?) -> Dictionary<String, Any?>?
     static func modelCustomFields() -> [ActiveModel.CustomField]
 }
 
@@ -14,6 +14,10 @@ public extension Serializable {
     public static func serialize(model:Self, action:ActiveModel.Action? = nil) -> Dictionary<String, Any?>? {
         
         guard let model = model as? ActiveModel else { return nil }
+        
+        if let customDictionary:Dictionary<String, Any?> = customSerialize(model: model, action: action) {
+            return customDictionary
+        }
         
         let types = modelFieldTypes()
         let scheme = customScheme()
@@ -105,6 +109,10 @@ public extension Serializable {
     
     public static func deserialize(data:NSDictionary, imbedded:Bool = false) -> Self? {
         // important note. Imbedded in this context means that the current data is imbedded within another model's response
+        
+        if let customModel:Self = customDeserialize(dictionary: data) {
+            return customModel
+        }
         
         guard let id:String = extractId(data["id"]) else { return nil }
 

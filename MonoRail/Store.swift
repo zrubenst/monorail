@@ -12,8 +12,6 @@ internal extension ActiveModel {
         var modelActivated:Bool = false
         
         var modelJsonRoot:String? = nil
-        var modelSerializer:ActiveSerializer? = nil
-        var modelDeserializer:ActiveDeserializer? = nil
         
         var modelFieldTypes:Dictionary<String, RawFieldType> = [:]
         var modelCustomFields:[ActiveModel.CustomField] = [] as! [ActiveModel.CustomField]

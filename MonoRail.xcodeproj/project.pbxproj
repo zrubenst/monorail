@@ -33,7 +33,6 @@
 		AD81EF8B1EE8C59D008CC149 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF891EE8C59D008CC149 /* Extensions.swift */; };
 		AD8956781EE8D8D900D4EB82 /* Awakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8956771EE8D8D900D4EB82 /* Awakable.swift */; };
 		AD89567A1EE8E13600D4EB82 /* ActiveNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8956791EE8E13600D4EB82 /* ActiveNetwork.swift */; };
-		AD89567F1EEA12C700D4EB82 /* ActiveSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD89567E1EEA12C700D4EB82 /* ActiveSerializer.swift */; };
 		ADD9E2B11EE8C73600A75C20 /* MonoRail.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD9E2B01EE8C73600A75C20 /* MonoRail.swift */; };
 		ADF1093F1EECDE7F00A84608 /* ActiveReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF1093E1EECDE7F00A84608 /* ActiveReference.swift */; };
 /* End PBXBuildFile section */
@@ -68,7 +67,6 @@
 		AD81EF891EE8C59D008CC149 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AD8956771EE8D8D900D4EB82 /* Awakable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Awakable.swift; sourceTree = "<group>"; };
 		AD8956791EE8E13600D4EB82 /* ActiveNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveNetwork.swift; sourceTree = "<group>"; };
-		AD89567E1EEA12C700D4EB82 /* ActiveSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveSerializer.swift; sourceTree = "<group>"; };
 		ADD9E2B01EE8C73600A75C20 /* MonoRail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonoRail.swift; sourceTree = "<group>"; };
 		ADF1093E1EECDE7F00A84608 /* ActiveReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveReference.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,7 +115,6 @@
 				AD81EF861EE8C54C008CC149 /* Networking */,
 				AD81EF881EE8C55E008CC149 /* Extensions */,
 				AD81EF871EE8C552008CC149 /* External */,
-				AD89567D1EEA12AA00D4EB82 /* Client Custom */,
 				ADD9E2B01EE8C73600A75C20 /* MonoRail.swift */,
 				AD81EF501EE8C506008CC149 /* MonoRail.h */,
 				AD81EF511EE8C506008CC149 /* Info.plist */,
@@ -169,14 +166,6 @@
 				AD81EF891EE8C59D008CC149 /* Extensions.swift */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		AD89567D1EEA12AA00D4EB82 /* Client Custom */ = {
-			isa = PBXGroup;
-			children = (
-				AD89567E1EEA12C700D4EB82 /* ActiveSerializer.swift */,
-			);
-			name = "Client Custom";
 			sourceTree = "<group>";
 		};
 		ADF68D961EECE82900173693 /* Protocols */ = {
@@ -313,7 +302,6 @@
 				AD81EF811EE8C540008CC149 /* Serializable.swift in Sources */,
 				ADF1093F1EECDE7F00A84608 /* ActiveReference.swift in Sources */,
 				AD81EF751EE8C540008CC149 /* ActiveModel.swift in Sources */,
-				AD89567F1EEA12C700D4EB82 /* ActiveSerializer.swift in Sources */,
 				AD81EF831EE8C540008CC149 /* Store.swift in Sources */,
 				ADD9E2B11EE8C73600A75C20 /* MonoRail.swift in Sources */,
 				AD81EF7B1EE8C540008CC149 /* Networking.swift in Sources */,

@@ -4,10 +4,20 @@ import Foundation
 open class ActiveModel:NSObject, Actionable, Awakable {
     
     /////////////////////////
-    /// Override this for customization of the Model
+    /// Override these for customization of the Model
     open class func register() {
         
     }
+    
+    
+    open class func customDeserialize(dictionary:NSDictionary) -> Self? {
+        return nil
+    }
+    
+    open class func customSerialize(model:ActiveModel, action:ActiveModel.Action? = nil) -> Dictionary<String, Any?>? {
+        return nil
+    }
+    
     
     /////////////////////////
     // Functions to call in the register function
@@ -31,8 +41,6 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     public class func permit(actions:ActiveModel.Action...) { store.modelActions = actions }
     
     public class func json(root:String?) { store.modelJsonRoot = root }
-    public class func set(serializer:ActiveSerializer?) { store.modelSerializer = serializer }
-    public class func set(deserializer:ActiveDeserializer?) { store.modelDeserializer = deserializer }
     
     public enum Action {
         case create
@@ -116,8 +124,6 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     }
     
     public static func modelJsonRoot(action:ActiveModel.Action) -> String? { return store.modelJsonRoot == nil ? nil : action == .getMany ? store.modelJsonRoot!.pluralize() : store.modelJsonRoot  }
-    public static func customSerializer() -> ActiveSerializer? { return store.modelSerializer }
-    public static func customDeserializer() -> ActiveDeserializer? { return store.modelDeserializer }
     public static func modelCustomFields() -> [ActiveModel.CustomField] { return store.modelCustomFields }
     public func modelCustomFields() -> [ActiveModel.CustomField] { return type(of: self).modelCustomFields() }
     
