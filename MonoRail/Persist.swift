@@ -44,7 +44,7 @@ public class Persist {
             }
         }
         
-        persistRelationships(from: newest)
+        persistRelationships(of: newest)
     }
     
     private class func isRegistered(register:ActiveModel) -> Bool {
@@ -109,8 +109,8 @@ public class Persist {
     ////////////////////
     // Instance scope helpers
     
-    internal class func persistRelationships(from updated:ActiveModel) {
-        
+    internal class func persistRelationships(of updated:ActiveModel) {
+                
         let fields = updated.modelCustomFields()
         let table = tableByType()
         
@@ -140,26 +140,35 @@ public class Persist {
             
             // loop through all of the instances
             for instance in instances {
-                if !instance.isPersisted { continue } // if instance is not persisted, ignore it
+
+                guard let instanceValue:ActiveModel? = instance.modelGetValue(forKey: inverse!) as? ActiveModel? else { continue }
                 
-                // if the instance is referenced by this model, backwards reference the instance
+                // if the value at the custom field is not nil and the custom field references the instance
                 if let current:ActiveModel = currentValue {
-                    if current.isReference(to: instance) {
-                        instance.backwardsReference(field: inverse!, reference: updated)
+                    if current.references(instance) {
+                        
+                        // grab the value of the inverse field on the instance ... check if it backwards references updated
+                        if let instanceReference:ActiveModel = instanceValue {
+                            if instanceReference.references(updated) { continue }
+                            instance.backwardsReference(field: inverse!, reference: updated) // if it doesnt backwards reference, backwords reference it
+                        }
+                        
                         continue
                     }
                 }
                 
-                // grab the value for for the inverseOf field on the insatnce
-                guard let related:ActiveModel = instance.modelGetValue(forKey: inverse!) as? ActiveModel else { continue }
+                // at this point we know that updated does not reference the instance
                 
-                // if that field references this model...
-                if related.isReference(to: updated) {
-                    instance.dereference(field: inverse!, reference: updated) // dereference it
+                // if the instance has a reference at the inverse field, and that reference is to updated
+                if let instanceReference:ActiveModel = instanceValue {
+                    if instanceReference.references(updated) {
+                        instance.dereference(field: inverse!, reference: updated) // dereference it
+                    }
                 }
             }
         }
     }
+    
     
     internal class func tableByType() -> [String:[ActiveModel]] {
         

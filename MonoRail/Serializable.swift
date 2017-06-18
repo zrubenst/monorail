@@ -53,8 +53,8 @@ public extension Serializable {
             if custom.type == .referencesMany {
                 guard let relatedMany:ActiveModel = model.modelGetValue(forKey: field) as? ActiveModel else { continue }
                 if !relatedMany.isArray { continue }
-                guard let relatedArray:Array<ActiveModel> = relatedMany._arrayCollection as? Array<ActiveModel> else { continue }
                 
+                let relatedArray = relatedMany._arrayCollection
                 var relatedIds:Array<String> = []
                 
                 for related:ActiveModel in relatedArray {
@@ -117,6 +117,7 @@ public extension Serializable {
         guard let id:String = extractId(data["id"]) else { return nil }
 
         let model = imbedded ? modelGetNewUnpersisted(id: id) : modelGetNewPersisted(id: id)
+        
         let fields = model.fieldNames
         let scheme = customScheme()
         
@@ -184,6 +185,10 @@ public extension Serializable {
         
         if custom.type == .has && !imbedded {
             
+            if let currentReference:ActiveModel = model.value(forKey: field) as? ActiveModel {
+                if currentReference.isPersisted { return }
+            }
+            
             let belongsTo = custom.model.init(referencesId: model.id, foreignKey: custom.foreignField!)
             safelySet(model: model, field: field, to: belongsTo)
             
@@ -191,6 +196,10 @@ public extension Serializable {
         }
         
         if custom.type == .hasMany && !imbedded {
+            
+            if let currentReference:ActiveModel = model.value(forKey: field) as? ActiveModel {
+                if currentReference.isPersisted { return }
+            }
             
             let belongsToMany = custom.model.init(manyReferenceId: model.id, foreignKey: custom.foreignField!)
             safelySet(model: model, field: field, to: belongsToMany)

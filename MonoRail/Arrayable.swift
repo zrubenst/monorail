@@ -6,7 +6,7 @@ public protocol Arrayable: Sequence, IteratorProtocol {
     
     associatedtype Model
     
-    var _arrayCollection:NSMutableArray { get set }
+    var _arrayCollection:Array<ActiveModel> { get set }
     var _arrayCurrent:Int { get set }
     
     func ignore(_ m:Model)

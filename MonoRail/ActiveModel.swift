@@ -5,6 +5,8 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     
     /////////////////////////
     /// Override these for customization of the Model
+    
+    
     open class func register() {
         
     }
@@ -298,7 +300,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         super.init()
         _isPersisted = persisted
         _isArray = true
-        _arrayCollection = models as! NSMutableArray
+        _arrayCollection = models
         resetFields()
     }
     
@@ -362,17 +364,16 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     private var _isArray:Bool = false
     public var isArray:Bool { return _isArray }
     
-    public var _arrayCollection: NSMutableArray = []
-    public var _arrayCurrent: Int = 0
+    public var _arrayCollection:Array<ActiveModel> = Array<ActiveModel>()
+    public var _arrayCurrent:Int = 0
     
     public func count() -> Int {
         return _arrayCollection.count
     }
     
     public func contains(_ model:ActiveModel) -> Bool {
-        guard let array:Array<ActiveModel> = _arrayCollection as? Array<ActiveModel> else { return false }
         
-        for m in array {
+        for m in _arrayCollection {
             if m.same(as: model) { return true }
         }
         
@@ -382,30 +383,39 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     internal func set(new models:[ActiveModel]) {
         if !isArray { return }
         
-        _arrayCollection = models as! NSMutableArray
+        _arrayCollection = models
         
     }
     
     public func add(_ model:ActiveModel) {
         if !_isArray || _belongs { return }
         
-        _arrayCollection.add(model)
+        _arrayCollection.append(model)
     }
     
     public func remove(_ model:ActiveModel) {
         if !_isArray || _belongs { return }
         
-        _arrayCollection.remove(model)
+        for instance in _arrayCollection {
+            if instance.same(as: model) {
+                _arrayCollection.remove(object: instance)
+            }
+        }
     }
     
     internal func forceAdd(_ model:ActiveModel) {
         if !_isArray { return }
-        _arrayCollection.add(model)
+        _arrayCollection.append(model)
     }
     
     internal func forceRemove(_ model:ActiveModel) {
         if !_isArray { return }
-        _arrayCollection.remove(model)
+        
+        for instance in _arrayCollection {
+            if instance.same(as: model) {
+                _arrayCollection.remove(object: instance)
+            }
+        }
     }
     
     /////////////////////////
@@ -561,23 +571,13 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         return self.id == other.id && self._isPersisted && other.className == self.className
     }
     
-    internal func isReference(to other:ActiveModel) -> Bool {
+    internal func references(_ other:ActiveModel) -> Bool {
         
         if isArray {
-            guard let array:Array<ActiveModel> = _arrayCollection as? Array<ActiveModel> else { return false }
-            
-            for model in array {
-                if other.isArray { return model.contains(other) }
-                
-                return model.same(as: other)
-            }
+            return self.contains(other)
         }
         
-        if other.isArray {
-            return other.contains(self)
-        }
-        
-        return self.same(as: other)
+        return same(as: other)
     }
     
     internal func backwardsReference(field:String, reference:ActiveModel) {
@@ -594,11 +594,11 @@ open class ActiveModel:NSObject, Actionable, Awakable {
     
     internal func dereference(field:String, reference:ActiveModel) {
         
-        guard let value:ActiveModel = self.modelGetValue(forKey: field) as? ActiveModel else { return }
-        
-        if value.isArray {
-            value.forceRemove(reference)
-            return
+        if let value:ActiveModel = self.modelGetValue(forKey: field) as? ActiveModel {
+            if value.isArray {
+                value.forceRemove(reference)
+                return
+            }
         }
         
         self.modelSetValue(nil, forKey: field)
@@ -674,7 +674,7 @@ open class ActiveModel:NSObject, Actionable, Awakable {
                 print(prefix + "\tPersisted (empty)")
                 return
             }
-            for model in _arrayCollection as! Array<ActiveModel> {
+            for model in _arrayCollection {
                 model.printOut(prefix + "\t", level: level + 1, maxLevel: maxLevel)
             }
             return
