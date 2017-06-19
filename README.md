@@ -1,4 +1,4 @@
-![monorail_logo_final.png](https://bitbucket.org/repo/akypero/images/1571044082-monorail_logo_final.png)
+![MonoRail - Swift on Rails](README/monorail_logo.png)
 
 MonoRail is an interface between server-side models and iOS models written entirely in Swift. MonoRail takes the weight of parsing JSON from an API and turning it into useable Swift objects easy. Furthermore, MonoRail adopts a Ruby on Rails-esque approach in handling the creation, retrieval, updating and deletion (CRUD) of models. The easiest way to understand the benefits of MonoRail is to see how simple it is to get a functioning REST API interface up and running in seconds.
 
@@ -28,6 +28,8 @@ print(train.numberOfCars)   // 5
 print(train.maxSpeed)       // 46.8
 ```
 
+[More about models](#more-on-models)
+
 ### Create, Retrieve, Update and Delete
 
 ```swift
@@ -46,7 +48,7 @@ for aTrain in allTrains {
 train.delete()
 
 ```
-[More about actions](#Actions)
+[More about actions](#actions)
 
 ## Relationships
 MonoRail is much more than just a JSON de/serializer and some server interaction, one of the core features of MonoRail, and an integral aspect to any API, is relational models. MonoRail does all the hard work for you.
@@ -80,6 +82,8 @@ for car in train.cars {
     print(car.occupancy)
 }
 ```
+
+[More about relationships](#relationships-in-detail)
 
 ## Application-Wide Persistence 
 
@@ -118,6 +122,8 @@ A use case for this could be having a `UIViewController` get a Train and display
 ---
 
 # Installation
+
+For now, clone the repository and include the xcode project in your project
 
 ---
 
