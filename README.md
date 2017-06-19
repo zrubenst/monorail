@@ -3,15 +3,13 @@
 MonoRail is an interface between server-side models and iOS models written entirely in Swift. MonoRail takes the weight of parsing JSON from an API and turning it into useable Swift objects easy. Furthermore, MonoRail adopts a Ruby on Rails-esque approach in handling the creation, retrieval, updating and deletion (CRUD) of models. The easiest way to understand the benefits of MonoRail is to see how simple it is to get a functioning REST API interface up and running in seconds.
 
 ### Give MonoRail an API Address
-```
-#!swift
+```swift
 MonoRail.register(apiRootUrl: "URL TO REST API")
 ```
 Add this in the Application Delegate's `application: didFinishLaunchingWithOptions:`
 
 ### Create a model
-``` 
-#!swift
+```swift
 class Train: ActiveModel {
     var company = String.Field
     var numberOfCars = Number.Field
@@ -21,8 +19,7 @@ class Train: ActiveModel {
 
 ### Thats It
 
-``` 
-#!swift
+```swift
 let train = Train.get(id: 1)
 
 print(train.id)             // 1
@@ -33,8 +30,7 @@ print(train.maxSpeed)       // 46.8
 
 ### Create, Retrieve, Update and Delete
 
-```
-#!swift
+```swift
 let train = Train()
 train.company = "MonoRail Co."
 train.create()
@@ -52,14 +48,11 @@ train.delete()
 ```
 [More about actions](#Actions)
 
----
-
 ## Relationships
 MonoRail is much more than just a JSON de/serializer and some server interaction, one of the core features of MonoRail, and an integral aspect to any API, is relational models. MonoRail does all the hard work for you.
 
 ### Create models
-```
-#!swift
+```swift
 class Car: ActiveModel, ActiveReference {
     var occupancy = Number.Field
     var needsRepairs = Boolean.Field
@@ -80,8 +73,7 @@ class Train:ActiveModel, ActiveReference {
 ```
 
 ### Thats it
-```
-#!swift
+```swift
 let train = Train.get(id: 1)
 
 for car in train.cars {
@@ -89,16 +81,13 @@ for car in train.cars {
 }
 ```
 
----
-
 ## Application-Wide Persistence 
 
 When two instances of the same `type` and the same `id` exist in the application, their fields are synchronized with the most recently fetched model. Furthermore, if two instances of the same `type` and `id` exist, MonoRail attempts to consolidate them so there is only one instance being used across the application, minimizing memory usage.
 
 Example:
 
-```
-#!swift
+```swift
 let train = Train.get(id: 1)
 let anotherTrain = Train.get(id: 1)
 
@@ -112,8 +101,7 @@ print(anotherTrain.maxSpeed)    // 55.5
 
 ### Relationships are Persisted too
 Example:
-```
-#!swift
+```swift
 let trainA = Train.get(id: 1)
 let trainB = Train.get(id: 2)
 
@@ -141,8 +129,7 @@ All of your models in MonoRail must subclass `ActiveModel`. ActiveModel does a *
 
 Example:
 
-```
-#!swift
+```swift
 class Train: ActiveModel {
     var company = String.Field
     var maxSpeed = Number.Field
@@ -166,8 +153,7 @@ Available fields for use with MonoRail. MonoRail requires that you use the `Fiel
 
 Example usage:
 
-```
-#!swift
+```swift
 var string = String.Field
 var number = Number.Field
 var boolean = Boolean.Field
@@ -184,8 +170,7 @@ var date = Date.Field
 
 Override the `register()` function in your model to rename it and set its path, and override `customSerialize()` and `customDeserialize()` to handle the parsing from JSON to a usable model and vice-versa.
 
-```
-#!swift
+```swift
 class Resource:ActiveModel {
 
     override class func register() {
@@ -208,8 +193,7 @@ There are `Class` actions and `Instance` actions, class actions are defined as `
 
 Example:
 
-```
-#!swift
+```swift
 Train.get(id: 1)     // Class action
 
 let train = Train()
@@ -228,21 +212,18 @@ train.create()       // Instance action
 Actions can be called synchronously and asynchronously (in this ReadMe, the synchronous version is used only because it is less code. It is recommended that you use the asynchronous method)
 
 #### Synchronous
-```
-#!swift
+```swift
 let train = Train.get(id: 1)
 ```
 
 #### Asynchronous
-```
-#!swift
+```swift
 Train.get(id: 1, success: { (train:Train) in
    // code            
 })
 ```
 Failure block is optional:
-```
-#!swift
+```swift
 Train.get(id: 1, success: { (train:Train) in
     // code            
 }, failure: { (error:ActiveNetworkError) in
@@ -258,8 +239,6 @@ The failure block receives an instance of `ActiveNetworkError`
 > * **code**     `Int` the response code of the error, example: `404`
 
 > * **data**     `NSDictionary?` the body of the error response, example: `{ "errors" : { "This resource does not exist" } }`
-
----
 
 ## API Requirements 
 
@@ -281,8 +260,7 @@ For the model `Resource`:
 
 `ActiveModel` implements a `get(where: )` action that hits the `GET /resources` endpoint with parameters that it expects will be used to filter the response. Implementing this functionality in a Rails API is quite easy:
 
-```
-#!ruby
+```ruby
 if params.empty?
     render json: { resources: Resource.all }
 else
@@ -298,8 +276,7 @@ MonoRail makes a lot of assumptions in order to take a bulk of the work off of y
 
 When a *single* resource is requested in `GET`, `POST` and `PUT` requests, MonoRail expects this format:
 
-```
-#!json
+```json
 {
     "resource" : {
         "id" : 1,
@@ -311,8 +288,7 @@ When a *single* resource is requested in `GET`, `POST` and `PUT` requests, MonoR
 
 And when *multiple* resources and/or *imbedded* resources are expected:
 
-```
-#!json
+```json
 {
     "resource" : {
         "id" : 1,
@@ -333,14 +309,11 @@ And when *multiple* resources and/or *imbedded* resources are expected:
 
 For APIs that use Rails and adopt RESTful aspects, this shouldn't be an issue, however in later releases aliasing for unrelated fields will be implemented.
 
----
-
 ## Relationships in Detail
 
 Using `ActiveReference` in addition to `ActiveModel` enables your models to reference one another. Adding relationships to models is as simple as adding the `ActiveReference` protocol and defining a reference field.
 
-```
-#!swift
+```swift
 class Car: ActiveModel, ActiveReference {
     var train = References(Train.One)
 }
@@ -392,24 +365,20 @@ Has( `type` :ActiveModel.Type, `at` :String?, `aliasing` :String?, `foreignKey` 
 
 
 Example:
-```
-#!swift
+```swift
 var monorail = References(Train.ImbedsOne, at: "monorail", aliasing: "monorail")
 var employee = References(Conductor.One, at: "employee", aliasing: "conductor_id")
 ```
 
 **NOTE** Reference, Has, and BelongsTo assumes that the name of the variable is the model type's name in camelCase. If it isn't, you need to set it with `at`.
 
----
-
-## Networking Delegate
+# Networking Delegate
 
 If you need to set default headers, default parameters, and/or get information from the response headers after each request MonoRail makes, use `NetworkingDelegate`
 
 Required functions:
 
-```
-#!swift
+```swift
 public protocol NetworkingDelegate {
     func newResponse(headers:Dictionary<String, Any?>)
     func additionalHeaders() -> Dictionary<String, Any?>
@@ -419,8 +388,7 @@ public protocol NetworkingDelegate {
 
 Set the delegate:
 
-```
-#!swift
+```swift
 Networking.delegate = MyNetworkingDelegate()
 ```
 
