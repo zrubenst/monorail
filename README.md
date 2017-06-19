@@ -399,3 +399,5 @@ Networking.delegate = MyNetworkingDelegate()
 ```
 
 You can set this in the AppDelegate's `application: didFinishLaunchingWithOptions:`
+
+<img src="README/monorail_logo_square.png" width="48">
