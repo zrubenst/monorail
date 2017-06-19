@@ -40,10 +40,6 @@ open class ActiveModel:NSObject, Actionable, Awakable {
         store.modelApiPath = path
     }
     
-    public class func permit(actions:ActiveModel.Action...) { store.modelActions = actions }
-    
-    public class func json(root:String?) { store.modelJsonRoot = root }
-    
     public enum Action {
         case create
         case get
