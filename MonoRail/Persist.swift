@@ -1,7 +1,7 @@
 
 import UIKit
 
-public class Persist {
+internal class Persist {
     
     private init() {}
     internal static var shared = Persist()
@@ -203,7 +203,7 @@ public class Persist {
     ////////////////////
     // Printing
     
-    public class func printOut() {
+    internal class func printOut() {
         
         for (model, instances) in shared.table {
             

@@ -260,6 +260,8 @@ public extension Serializable {
             val = value as! String
         } else if type == .number && value is Number {
             val = value as! Number
+        } else if type == .number && value is String, let num:Number = NumberFormatter().number(from: value as! String) {
+            val = num
         } else if type == .relation && value is ActiveModel {
             val = value
         } else if type == .dictionary && value is NSDictionary {

@@ -33,6 +33,7 @@ public extension NSNumber {
             return NSNumber(value: Float(num as! CGFloat))
         }
         assert(false, "Invalid number type for operation of Number")
+        return NSNumber(value: 0)
     }
     
     internal class func sanitize(_ number: NSNumber) -> NSNumber {

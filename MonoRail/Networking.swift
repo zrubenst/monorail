@@ -245,6 +245,7 @@ internal extension Dictionary {
                     
                     guard let valueString:String = item as? String else {
                         assert(false, "Only Strings and literals are allowed this deep in request parameters")
+                        return ""
                     }
                     
                     arrayParameters.append("\(aKey)[]=\(valueString.stringForUrlEncoding()!)")
@@ -254,6 +255,7 @@ internal extension Dictionary {
                 
             } else {
                 assert(false, "Only Strings, literals and Arrays are allowed in request parameters")
+                return ""
             }
         }
         

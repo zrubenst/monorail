@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AD52DA831EEC5A6500998EF8 /* Arrayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD52DA821EEC5A6500998EF8 /* Arrayable.swift */; };
-		AD81EF571EE8C506008CC149 /* MonoRail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD81EF4D1EE8C506008CC149 /* MonoRail.framework */; };
 		AD81EF5C1EE8C506008CC149 /* MonoRailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF5B1EE8C506008CC149 /* MonoRailTests.swift */; };
 		AD81EF5E1EE8C506008CC149 /* MonoRail.h in Headers */ = {isa = PBXBuildFile; fileRef = AD81EF501EE8C506008CC149 /* MonoRail.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD81EF711EE8C540008CC149 /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF671EE8C540008CC149 /* Actionable.swift */; };
@@ -83,7 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD81EF571EE8C506008CC149 /* MonoRail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
