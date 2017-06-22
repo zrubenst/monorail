@@ -95,6 +95,11 @@ public extension Serializable {
     public static func deserializeMany(data:NSDictionary) -> [Self]? {
         guard let root:String = modelJsonRoot(action: .getMany) else { return nil }
         guard let dataArray:NSArray = data[root] as? NSArray else { return nil }
+        
+        return deserialize(array: dataArray)
+    }
+    
+    public static func deserialize(array dataArray:NSArray) -> [Self]? {
         var array:Array<Self> = []
         
         for dataElement in dataArray {

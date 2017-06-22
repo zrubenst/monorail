@@ -17,7 +17,7 @@ public class ActiveNetworkError {
     public var domain:String
     public var code:Int
     
-    internal init(error:NSError, dict:NSDictionary?) {
+    public init(error:NSError, dict:NSDictionary?) {
         data = dict
         domain = error.domain
         code = error.code
