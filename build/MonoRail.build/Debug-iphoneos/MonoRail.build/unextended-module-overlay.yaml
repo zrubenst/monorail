@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': '/Users/zrubenst/Library/Developer/Xcode/DerivedData/MonoRail-arnkudxrphfrdpbjwqvituqzllpx/Build/Products/Debug-iphoneos/MonoRail.framework/Modules'
+    'contents': [{
+      'type': 'file',
+      'name': 'module.modulemap',
+      'external-contents': '/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/build/MonoRail.build/Debug-iphoneos/MonoRail.build/unextended-module.modulemap',
+    }]
+  }]
+}

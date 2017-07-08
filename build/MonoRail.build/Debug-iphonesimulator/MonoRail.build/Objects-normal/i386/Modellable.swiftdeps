@@ -1,0 +1,103 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Modellable"
+provides-nominal:
+- "P8MonoRail10Modellable"
+provides-member:
+- ["P8MonoRail10Modellable", ""]
+- ["P8MonoRail10Modellable", "this"]
+- ["P8MonoRail10Modellable", "asSelf"]
+- ["P8MonoRail10Modellable", "asSelf"]
+provides-dynamic-lookup:
+depends-top-level:
+- "ActiveModel"
+- "Bool"
+- "CastingPrecedence"
+- "Dictionary"
+- "Modellable"
+- "String"
+depends-member:
+- ["P8MonoRail10Actionable", "Action"]
+- ["P8MonoRail10Actionable", "RawFieldType"]
+- ["C8MonoRail11ActiveModel", "Action"]
+- ["C8MonoRail11ActiveModel", "RawFieldType"]
+- ["Ps9AnyObject", "Action"]
+- ["Ps9AnyObject", "RawFieldType"]
+- ["P8MonoRail8Awakable", "Action"]
+- ["P8MonoRail8Awakable", "RawFieldType"]
+- ["Ps7CVarArg", "Action"]
+- ["Ps7CVarArg", "RawFieldType"]
+- ["Ps28CustomDebugStringConvertible", "Action"]
+- ["Ps28CustomDebugStringConvertible", "RawFieldType"]
+- ["Ps23CustomStringConvertible", "Action"]
+- ["Ps23CustomStringConvertible", "RawFieldType"]
+- ["Ps9Equatable", "Action"]
+- ["Ps9Equatable", "RawFieldType"]
+- ["Ps8Hashable", "Action"]
+- ["Ps8Hashable", "RawFieldType"]
+- ["P8MonoRail10Modellable", "Action"]
+- ["P8MonoRail10Modellable", "ActiveModel"]
+- ["P8MonoRail10Modellable", "Bool"]
+- ["P8MonoRail10Modellable", "Dictionary"]
+- ["P8MonoRail10Modellable", "RawFieldType"]
+- ["P8MonoRail10Modellable", "Self"]
+- ["P8MonoRail10Modellable", "String"]
+- ["P8MonoRail10Modellable", "asSelf"]
+- ["P8MonoRail10Modellable", "modelActions"]
+- ["P8MonoRail10Modellable", "modelApiPath"]
+- ["P8MonoRail10Modellable", "modelFieldNames"]
+- ["P8MonoRail10Modellable", "modelFieldTypes"]
+- ["P8MonoRail10Modellable", "modelGetNew"]
+- ["P8MonoRail10Modellable", "modelGetNewPersisted"]
+- ["P8MonoRail10Modellable", "modelGetNewUnpersisted"]
+- ["P8MonoRail10Modellable", "modelGetThis"]
+- ["P8MonoRail10Modellable", "modelGetValue"]
+- ["P8MonoRail10Modellable", "modelName"]
+- ["P8MonoRail10Modellable", "modelNamePlural"]
+- ["P8MonoRail10Modellable", "modelSetValue"]
+- ["P8MonoRail10Modellable", "sync"]
+- ["P8MonoRail10Modellable", "this"]
+- ["CSo8NSObject", "Action"]
+- ["CSo8NSObject", "RawFieldType"]
+- ["PSo16NSObjectProtocol", "Action"]
+- ["PSo16NSObjectProtocol", "RawFieldType"]
+- ["P8MonoRail12Serializable", "Action"]
+- ["P8MonoRail12Serializable", "RawFieldType"]
+- ["Ps9_Hashable", "Action"]
+- ["Ps9_Hashable", "RawFieldType"]
+depends-nominal:
+- "P8MonoRail10Actionable"
+- "C8MonoRail11ActiveModel"
+- "Ps9AnyObject"
+- "P8MonoRail8Awakable"
+- "Ps7CVarArg"
+- "Ps28CustomDebugStringConvertible"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- "Ps8Hashable"
+- "P8MonoRail10Modellable"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- "P8MonoRail12Serializable"
+- "Ps9_Hashable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/UIKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/i386/SwiftOnoneSupport.swiftmodule"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/MonoRail.h"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/build/MonoRail.build/Debug-iphonesimulator/MonoRail.build/unextended-module.modulemap"
+interface-hash: "1ae73a38e10964b929978be046e34c3e"

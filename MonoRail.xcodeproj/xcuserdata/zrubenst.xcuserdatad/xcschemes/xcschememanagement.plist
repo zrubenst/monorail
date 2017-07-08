@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>MonoRailUniversal.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>AD5C2BB21F0A7FF700CDBEED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AD81EF4C1EE8C506008CC149</key>
 		<dict>
 			<key>primary</key>

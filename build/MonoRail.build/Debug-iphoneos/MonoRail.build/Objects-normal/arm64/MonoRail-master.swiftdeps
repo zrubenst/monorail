@@ -1,0 +1,19 @@
+version: "Apple Swift version 3.1 (swiftlang-802.0.53 clang-802.0.42)"
+options: "ef779f65644ab5e1adc571dd072454bc"
+build_time: [552794154, 755597000]
+inputs:
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/ActiveNetwork.swift": [552794058, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Modellable.swift": [550809543, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/FieldTypes.swift": [551230888, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Awakable.swift": [552789722, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Pluralize.swift": [550106846, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Serializable.swift": [551408444, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/ActiveReference.swift": [551040221, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/ActiveModel.swift": [552478553, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Store.swift": [551045816, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/MonoRail.swift": [551028806, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Networking.swift": [552794045, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Actionable.swift": [551124288, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Persist.swift": [551230347, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Arrayable.swift": [551125746, 0]
+  "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/Extensions.swift": [551040193, 0]

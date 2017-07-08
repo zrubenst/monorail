@@ -1,12 +1,14 @@
 
 import UIKit
 
+
 public enum NetworkVerb: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
     case patch = "PATCH"
     case delete = "DELETE"
+    case search = "SEARCH"
     
     var method:String {
         return rawValue
@@ -54,6 +56,8 @@ public class Networking {
             failure(NSError(domain: "An error occurred", code: 430, userInfo: nil), nil)
             return
         }
+        
+        print(urlstr)
         
         var request = URLRequest(url: url)
         request.httpMethod = verb.method

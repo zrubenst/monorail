@@ -1,0 +1,33 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/zrubenst/Library/Developer/Xcode/DerivedData/MonoRail-arnkudxrphfrdpbjwqvituqzllpx/Build/Products/Debug-iphonesimulator/MonoRail.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "MonoRail-Swift.h",
+          'external-contents': "/Users/zrubenst/Library/Developer/Xcode/DerivedData/MonoRail-arnkudxrphfrdpbjwqvituqzllpx/Build/Products/Debug-iphonesimulator/MonoRail.framework/Headers/MonoRail-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "MonoRail.h",
+          'external-contents': "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/MonoRail.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/zrubenst/Library/Developer/Xcode/DerivedData/MonoRail-arnkudxrphfrdpbjwqvituqzllpx/Build/Products/Debug-iphonesimulator/MonoRail.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/build/MonoRail.build/Debug-iphonesimulator/MonoRail.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

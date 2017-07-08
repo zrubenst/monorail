@@ -1,0 +1,253 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Awakable"
+- "AwakableAid"
+provides-nominal:
+- "P8MonoRail8Awakable"
+- "C8MonoRail11AwakableAid"
+provides-member:
+- ["P8MonoRail8Awakable", ""]
+- ["C8MonoRail11AwakableAid", ""]
+- ["CSo13UIApplication", ""]
+- ["CSo13UIApplication", "next"]
+provides-dynamic-lookup:
+- "next"
+depends-top-level:
+- !private "..<"
+- !private "AnyClass"
+- !private "AutoreleasingUnsafeMutablePointer"
+- "Awakable"
+- "AwakableAid"
+- "CastingPrecedence"
+- !private "Int"
+- !private "Int32"
+- "MonoRail"
+- "UIApplication"
+- "UIResponder"
+- !private "UnsafeMutablePointer"
+- "Void"
+- !private "objc_getClassList"
+depends-member:
+- !private ["Ps9AnyObject", "AutoreleasingUnsafeMutablePointer"]
+- ["Ps9AnyObject", "AwakableAid"]
+- ["Ps9AnyObject", "Error"]
+- !private ["Ps9AnyObject", "Int"]
+- !private ["Ps9AnyObject", "Int32"]
+- ["Ps9AnyObject", "MonoRail"]
+- ["Ps9AnyObject", "Registration"]
+- !private ["Ps9AnyObject", "UIApplication"]
+- !private ["Ps9AnyObject", "UnsafeMutablePointer"]
+- ["Ps9AnyObject", "end"]
+- !private ["Ps9AnyObject", "next"]
+- !private ["Ps9AnyObject", "objc_getClassList"]
+- !private ["Ps9AnyObject", "runOnce"]
+- ["Ps9AnyObject", "start"]
+- ["Ps9AnyObject", "trigger"]
+- ["Ps9AnyObject", "turnOffErrors"]
+- ["Ps9AnyObject", "turnOnErrors"]
+- ["Ps9AnyObject", ""]
+- !private ["Vs33AutoreleasingUnsafeMutablePointer", "init"]
+- ["P8MonoRail8Awakable", "awake"]
+- !private ["C8MonoRail11AwakableAid", "AnyClass"]
+- !private ["C8MonoRail11AwakableAid", "AutoreleasingUnsafeMutablePointer"]
+- !private ["C8MonoRail11AwakableAid", "Awakable"]
+- !private ["C8MonoRail11AwakableAid", "Int"]
+- !private ["C8MonoRail11AwakableAid", "Int32"]
+- !private ["C8MonoRail11AwakableAid", "UnsafeMutablePointer"]
+- ["C8MonoRail11AwakableAid", "deinit"]
+- ["C8MonoRail11AwakableAid", "init"]
+- !private ["C8MonoRail11AwakableAid", "objc_getClassList"]
+- ["C8MonoRail11AwakableAid", "trigger"]
+- !private ["Ps17BitwiseOperations", "init"]
+- ["Ps7CVarArg", "AwakableAid"]
+- ["Ps7CVarArg", "MonoRail"]
+- !private ["Ps7CVarArg", "UIApplication"]
+- !private ["Ps7CVarArg", "allocate"]
+- !private ["Ps7CVarArg", "deallocate"]
+- !private ["Ps7CVarArg", "init"]
+- !private ["Ps7CVarArg", "next"]
+- !private ["Ps7CVarArg", "runOnce"]
+- !private ["Ps7CVarArg", "subscript"]
+- !private ["Ps10Comparable", "allocate"]
+- !private ["Ps10Comparable", "deallocate"]
+- !private ["Ps10Comparable", "init"]
+- !private ["Ps10Comparable", "subscript"]
+- ["Ps28CustomDebugStringConvertible", "AwakableAid"]
+- ["Ps28CustomDebugStringConvertible", "MonoRail"]
+- !private ["Ps28CustomDebugStringConvertible", "UIApplication"]
+- !private ["Ps28CustomDebugStringConvertible", "allocate"]
+- !private ["Ps28CustomDebugStringConvertible", "deallocate"]
+- !private ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "next"]
+- !private ["Ps28CustomDebugStringConvertible", "runOnce"]
+- !private ["Ps28CustomDebugStringConvertible", "subscript"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "allocate"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "deallocate"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "subscript"]
+- !private ["Ps17CustomReflectable", "allocate"]
+- !private ["Ps17CustomReflectable", "deallocate"]
+- !private ["Ps17CustomReflectable", "init"]
+- !private ["Ps17CustomReflectable", "subscript"]
+- ["Ps23CustomStringConvertible", "AwakableAid"]
+- ["Ps23CustomStringConvertible", "MonoRail"]
+- !private ["Ps23CustomStringConvertible", "UIApplication"]
+- !private ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps23CustomStringConvertible", "next"]
+- !private ["Ps23CustomStringConvertible", "runOnce"]
+- ["Ps9Equatable", "AwakableAid"]
+- ["Ps9Equatable", "MonoRail"]
+- !private ["Ps9Equatable", "UIApplication"]
+- !private ["Ps9Equatable", "allocate"]
+- !private ["Ps9Equatable", "deallocate"]
+- !private ["Ps9Equatable", "init"]
+- !private ["Ps9Equatable", "next"]
+- !private ["Ps9Equatable", "runOnce"]
+- !private ["Ps9Equatable", "subscript"]
+- ["CC8MonoRail8MonoRail5Error", "turnOffErrors"]
+- ["CC8MonoRail8MonoRail5Error", "turnOnErrors"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "init"]
+- ["Ps8Hashable", "AwakableAid"]
+- ["Ps8Hashable", "MonoRail"]
+- !private ["Ps8Hashable", "UIApplication"]
+- !private ["Ps8Hashable", "allocate"]
+- !private ["Ps8Hashable", "deallocate"]
+- !private ["Ps8Hashable", "init"]
+- !private ["Ps8Hashable", "next"]
+- !private ["Ps8Hashable", "runOnce"]
+- !private ["Ps8Hashable", "subscript"]
+- !private ["Si", "init"]
+- !private ["Vs5Int32", "init"]
+- !private ["Ps7Integer", "init"]
+- !private ["Ps17IntegerArithmetic", "init"]
+- !private ["Ps10MirrorPath", "init"]
+- ["C8MonoRail8MonoRail", "Error"]
+- ["C8MonoRail8MonoRail", "Registration"]
+- ["CSo8NSObject", "AwakableAid"]
+- ["CSo8NSObject", "MonoRail"]
+- !private ["CSo8NSObject", "UIApplication"]
+- ["CSo8NSObject", "UIResponder"]
+- ["CSo8NSObject", "Void"]
+- ["CSo8NSObject", "next"]
+- ["CSo8NSObject", "runOnce"]
+- ["PSo16NSObjectProtocol", "AwakableAid"]
+- ["PSo16NSObjectProtocol", "MonoRail"]
+- !private ["PSo16NSObjectProtocol", "UIApplication"]
+- !private ["PSo16NSObjectProtocol", "next"]
+- !private ["PSo16NSObjectProtocol", "runOnce"]
+- ["CC8MonoRail8MonoRail12Registration", "end"]
+- ["CC8MonoRail8MonoRail12Registration", "start"]
+- !private ["Ps13SignedInteger", "init"]
+- !private ["Ps12SignedNumber", "init"]
+- !private ["Ps10Strideable", "allocate"]
+- !private ["Ps10Strideable", "deallocate"]
+- !private ["Ps10Strideable", "init"]
+- !private ["Ps10Strideable", "subscript"]
+- ["CSo13UIApplication", "AwakableAid"]
+- ["CSo13UIApplication", "MonoRail"]
+- !private ["CSo13UIApplication", "UIApplication"]
+- ["CSo13UIApplication", "UIResponder"]
+- ["CSo13UIApplication", "Void"]
+- ["CSo13UIApplication", "next"]
+- !private ["CSo13UIApplication", "runOnce"]
+- ["CSo11UIResponder", "AwakableAid"]
+- ["CSo11UIResponder", "MonoRail"]
+- !private ["CSo11UIResponder", "UIApplication"]
+- ["CSo11UIResponder", "UIResponder"]
+- ["CSo11UIResponder", "Void"]
+- ["CSo11UIResponder", "next"]
+- ["CSo11UIResponder", "runOnce"]
+- ["PSo30UIResponderStandardEditActions", "AwakableAid"]
+- ["PSo30UIResponderStandardEditActions", "MonoRail"]
+- !private ["PSo30UIResponderStandardEditActions", "UIApplication"]
+- !private ["PSo30UIResponderStandardEditActions", "next"]
+- !private ["PSo30UIResponderStandardEditActions", "runOnce"]
+- !private ["Sp", "allocate"]
+- !private ["Sp", "deallocate"]
+- !private ["Sp", "subscript"]
+- !private ["Ps35_ExpressibleByBuiltinIntegerLiteral", "init"]
+- ["Ps9_Hashable", "AwakableAid"]
+- ["Ps9_Hashable", "MonoRail"]
+- !private ["Ps9_Hashable", "UIApplication"]
+- !private ["Ps9_Hashable", "allocate"]
+- !private ["Ps9_Hashable", "deallocate"]
+- !private ["Ps9_Hashable", "init"]
+- !private ["Ps9_Hashable", "next"]
+- !private ["Ps9_Hashable", "runOnce"]
+- !private ["Ps9_Hashable", "subscript"]
+- !private ["Ps14_Incrementable", "init"]
+- !private ["Ps8_Integer", "init"]
+- !private ["Ps18_IntegerArithmetic", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Ps8_Pointer", "allocate"]
+- !private ["Ps8_Pointer", "deallocate"]
+- !private ["Ps8_Pointer", "init"]
+- !private ["Ps8_Pointer", "subscript"]
+- !private ["Ps14_SignedInteger", "init"]
+- !private ["Ps11_Strideable", "allocate"]
+- !private ["Ps11_Strideable", "deallocate"]
+- !private ["Ps11_Strideable", "init"]
+- !private ["Ps11_Strideable", "subscript"]
+depends-nominal:
+- "Ps9AnyObject"
+- !private "Vs33AutoreleasingUnsafeMutablePointer"
+- "P8MonoRail8Awakable"
+- "C8MonoRail11AwakableAid"
+- !private "Ps17BitwiseOperations"
+- "Ps7CVarArg"
+- !private "Ps10Comparable"
+- "Ps28CustomDebugStringConvertible"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- !private "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- "CC8MonoRail8MonoRail5Error"
+- !private "Ps27ExpressibleByIntegerLiteral"
+- "Ps8Hashable"
+- !private "Si"
+- !private "Vs5Int32"
+- !private "Ps7Integer"
+- !private "Ps17IntegerArithmetic"
+- !private "Ps10MirrorPath"
+- "C8MonoRail8MonoRail"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- "CC8MonoRail8MonoRail12Registration"
+- !private "Ps13SignedInteger"
+- !private "Ps12SignedNumber"
+- !private "Ps10Strideable"
+- "CSo13UIApplication"
+- "CSo11UIResponder"
+- "PSo30UIResponderStandardEditActions"
+- !private "Sp"
+- !private "Ps35_ExpressibleByBuiltinIntegerLiteral"
+- "Ps9_Hashable"
+- !private "Ps14_Incrementable"
+- !private "Ps8_Integer"
+- !private "Ps18_IntegerArithmetic"
+- !private "Ps21_ObjectiveCBridgeable"
+- !private "Ps8_Pointer"
+- !private "Ps14_SignedInteger"
+- !private "Ps11_Strideable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Metal.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/SwiftOnoneSupport.swiftmodule"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/MonoRail.h"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/build/MonoRail.build/Debug-iphoneos/MonoRail.build/unextended-module.modulemap"
+interface-hash: "0cedece377dc46067cb119a0ea615bb3"

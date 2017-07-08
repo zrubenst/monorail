@@ -1,0 +1,606 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ActiveReference"
+- "References"
+- "Has"
+- "parentModel"
+- "stringClassFromString"
+- "BelongsTo"
+provides-nominal:
+- "P8MonoRail15ActiveReference"
+provides-member:
+- ["P8MonoRail15ActiveReference", ""]
+- ["P8MonoRail15ActiveReference", "ignore"]
+- ["P8MonoRail15ActiveReference", "One"]
+- ["P8MonoRail15ActiveReference", "Many"]
+- ["P8MonoRail15ActiveReference", "ImbedsOne"]
+- ["P8MonoRail15ActiveReference", "ImbedsMany"]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "!="
+- !private "..<"
+- !private "=="
+- "ActiveModel"
+- "ActiveReference"
+- "AnyClass"
+- "Arrayable"
+- "AssignmentPrecedence"
+- "BelongsTo"
+- !private "Bundle"
+- "CastingPrecedence"
+- !private "CharacterSet"
+- "Has"
+- !private "MonoRail"
+- !private "NSClassFromString"
+- !private "NSMutableArray"
+- "Optional"
+- "References"
+- "String"
+- !private "StringLiteralType"
+- "TernaryPrecedence"
+- !private "Thread"
+- !private "UnicodeScalarType"
+- !private "activeModelImbedsAssociatedHandle"
+- !private "activeModelTypeAssociatedHandle"
+- !private "kCFBundleExecutableKey"
+- !private "objc_AssociationPolicy"
+- !private "objc_getAssociatedObject"
+- !private "objc_setAssociatedObject"
+- "parentModel"
+- "stringClassFromString"
+depends-member:
+- !private ["P8MonoRail10Actionable", "CustomField"]
+- !private ["P8MonoRail10Actionable", "CustomFieldType"]
+- !private ["P8MonoRail10Actionable", "className"]
+- !private ["P8MonoRail10Actionable", "store"]
+- !private ["C8MonoRail11ActiveModel", "CustomField"]
+- !private ["C8MonoRail11ActiveModel", "CustomFieldType"]
+- !private ["C8MonoRail11ActiveModel", "className"]
+- !private ["C8MonoRail11ActiveModel", "store"]
+- ["P8MonoRail15ActiveReference", "ImbedsMany"]
+- ["P8MonoRail15ActiveReference", "ImbedsOne"]
+- ["P8MonoRail15ActiveReference", "Many"]
+- ["P8MonoRail15ActiveReference", "One"]
+- ["P8MonoRail15ActiveReference", "Self"]
+- !private ["P8MonoRail15ActiveReference", "activeModelImbedsAssociatedHandle"]
+- !private ["P8MonoRail15ActiveReference", "activeModelTypeAssociatedHandle"]
+- ["P8MonoRail15ActiveReference", "ignore"]
+- !private ["P8MonoRail15ActiveReference", "objc_AssociationPolicy"]
+- !private ["P8MonoRail15ActiveReference", "objc_setAssociatedObject"]
+- !private ["Ps9AnyObject", "CustomField"]
+- !private ["Ps9AnyObject", "CustomFieldType"]
+- !private ["Ps9AnyObject", "Registration"]
+- !private ["Ps9AnyObject", "active"]
+- !private ["Ps9AnyObject", "callStackSymbols"]
+- !private ["Ps9AnyObject", "camelCased"]
+- !private ["Ps9AnyObject", "className"]
+- !private ["Ps9AnyObject", "components"]
+- !private ["Ps9AnyObject", "endIndex"]
+- !private ["Ps9AnyObject", "index"]
+- !private ["Ps9AnyObject", "infoDictionary"]
+- !private ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "main"]
+- !private ["Ps9AnyObject", "modelRegistrationFields"]
+- !private ["Ps9AnyObject", "pluralize"]
+- !private ["Ps9AnyObject", "remove"]
+- !private ["Ps9AnyObject", "store"]
+- !private ["Ps9AnyObject", "subscript"]
+- !private ["Ps9AnyObject", "substring"]
+- !private ["Sa", "subscript"]
+- ["P8MonoRail9Arrayable", "Self"]
+- !private ["P8MonoRail9Arrayable", "activeModelImbedsAssociatedHandle"]
+- !private ["P8MonoRail9Arrayable", "activeModelTypeAssociatedHandle"]
+- !private ["P8MonoRail9Arrayable", "objc_AssociationPolicy"]
+- !private ["P8MonoRail9Arrayable", "objc_setAssociatedObject"]
+- ["P8MonoRail9Arrayable", ""]
+- !private ["P8MonoRail8Awakable", "CustomField"]
+- !private ["P8MonoRail8Awakable", "CustomFieldType"]
+- !private ["P8MonoRail8Awakable", "className"]
+- !private ["P8MonoRail8Awakable", "store"]
+- !private ["Ps23BidirectionalCollection", "subscript"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["CSo6Bundle", "infoDictionary"]
+- !private ["CSo6Bundle", "main"]
+- !private ["Ps7CVarArg", "CustomField"]
+- !private ["Ps7CVarArg", "CustomFieldType"]
+- !private ["Ps7CVarArg", "callStackSymbols"]
+- !private ["Ps7CVarArg", "camelCased"]
+- !private ["Ps7CVarArg", "className"]
+- !private ["Ps7CVarArg", "components"]
+- !private ["Ps7CVarArg", "endIndex"]
+- !private ["Ps7CVarArg", "index"]
+- !private ["Ps7CVarArg", "infoDictionary"]
+- !private ["Ps7CVarArg", "init"]
+- !private ["Ps7CVarArg", "main"]
+- !private ["Ps7CVarArg", "pluralize"]
+- !private ["Ps7CVarArg", "remove"]
+- !private ["Ps7CVarArg", "store"]
+- !private ["Ps7CVarArg", "subscript"]
+- !private ["Ps7CVarArg", "substring"]
+- !private ["V10Foundation12CharacterSet", "init"]
+- !private ["Ps10Collection", "subscript"]
+- !private ["Ps10Comparable", "camelCased"]
+- !private ["Ps10Comparable", "components"]
+- !private ["Ps10Comparable", "endIndex"]
+- !private ["Ps10Comparable", "index"]
+- !private ["Ps10Comparable", "init"]
+- !private ["Ps10Comparable", "pluralize"]
+- !private ["Ps10Comparable", "substring"]
+- !private ["Ps28CustomDebugStringConvertible", "CustomField"]
+- !private ["Ps28CustomDebugStringConvertible", "CustomFieldType"]
+- !private ["Ps28CustomDebugStringConvertible", "callStackSymbols"]
+- !private ["Ps28CustomDebugStringConvertible", "camelCased"]
+- !private ["Ps28CustomDebugStringConvertible", "className"]
+- !private ["Ps28CustomDebugStringConvertible", "components"]
+- !private ["Ps28CustomDebugStringConvertible", "endIndex"]
+- !private ["Ps28CustomDebugStringConvertible", "hasMany"]
+- !private ["Ps28CustomDebugStringConvertible", "index"]
+- !private ["Ps28CustomDebugStringConvertible", "infoDictionary"]
+- !private ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "main"]
+- !private ["Ps28CustomDebugStringConvertible", "pluralize"]
+- !private ["Ps28CustomDebugStringConvertible", "referencesMany"]
+- !private ["Ps28CustomDebugStringConvertible", "remove"]
+- !private ["Ps28CustomDebugStringConvertible", "store"]
+- !private ["Ps28CustomDebugStringConvertible", "subscript"]
+- !private ["Ps28CustomDebugStringConvertible", "substring"]
+- !private ["CC8MonoRail11ActiveModel11CustomField", "init"]
+- !private ["OC8MonoRail11ActiveModel15CustomFieldType", "deinit"]
+- !private ["OC8MonoRail11ActiveModel15CustomFieldType", "has"]
+- !private ["OC8MonoRail11ActiveModel15CustomFieldType", "hasMany"]
+- !private ["OC8MonoRail11ActiveModel15CustomFieldType", "references"]
+- !private ["OC8MonoRail11ActiveModel15CustomFieldType", "referencesMany"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "camelCased"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "components"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "endIndex"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "index"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "pluralize"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "substring"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "camelCased"]
+- !private ["Ps17CustomReflectable", "components"]
+- !private ["Ps17CustomReflectable", "endIndex"]
+- !private ["Ps17CustomReflectable", "hasMany"]
+- !private ["Ps17CustomReflectable", "index"]
+- !private ["Ps17CustomReflectable", "init"]
+- !private ["Ps17CustomReflectable", "pluralize"]
+- !private ["Ps17CustomReflectable", "referencesMany"]
+- !private ["Ps17CustomReflectable", "remove"]
+- !private ["Ps17CustomReflectable", "subscript"]
+- !private ["Ps17CustomReflectable", "substring"]
+- !private ["Ps23CustomStringConvertible", "CustomField"]
+- !private ["Ps23CustomStringConvertible", "CustomFieldType"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps23CustomStringConvertible", "callStackSymbols"]
+- !private ["Ps23CustomStringConvertible", "camelCased"]
+- !private ["Ps23CustomStringConvertible", "className"]
+- !private ["Ps23CustomStringConvertible", "components"]
+- !private ["Ps23CustomStringConvertible", "endIndex"]
+- !private ["Ps23CustomStringConvertible", "index"]
+- !private ["Ps23CustomStringConvertible", "infoDictionary"]
+- !private ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps23CustomStringConvertible", "main"]
+- !private ["Ps23CustomStringConvertible", "pluralize"]
+- !private ["Ps23CustomStringConvertible", "remove"]
+- !private ["Ps23CustomStringConvertible", "store"]
+- !private ["Ps23CustomStringConvertible", "subscript"]
+- !private ["Ps23CustomStringConvertible", "substring"]
+- !private ["Vs10Dictionary", "subscript"]
+- !private ["Ps9Equatable", "CustomField"]
+- !private ["Ps9Equatable", "CustomFieldType"]
+- !private ["Ps9Equatable", "OBJC_ASSOCIATION_RETAIN_NONATOMIC"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- !private ["Ps9Equatable", "callStackSymbols"]
+- !private ["Ps9Equatable", "camelCased"]
+- !private ["Ps9Equatable", "className"]
+- !private ["Ps9Equatable", "components"]
+- !private ["Ps9Equatable", "endIndex"]
+- !private ["Ps9Equatable", "has"]
+- !private ["Ps9Equatable", "hasMany"]
+- !private ["Ps9Equatable", "index"]
+- !private ["Ps9Equatable", "infoDictionary"]
+- !private ["Ps9Equatable", "init"]
+- !private ["Ps9Equatable", "main"]
+- !private ["Ps9Equatable", "pluralize"]
+- !private ["Ps9Equatable", "references"]
+- !private ["Ps9Equatable", "referencesMany"]
+- !private ["Ps9Equatable", "remove"]
+- !private ["Ps9Equatable", "store"]
+- !private ["Ps9Equatable", "subscript"]
+- !private ["Ps9Equatable", "substring"]
+- !private ["Ps25ExpressibleByArrayLiteral", "init"]
+- !private ["Ps25ExpressibleByArrayLiteral", "remove"]
+- !private ["Ps25ExpressibleByArrayLiteral", "subscript"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps30ExpressibleByDictionaryLiteral", "subscript"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "camelCased"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "components"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "endIndex"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "index"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "pluralize"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "substring"]
+- !private ["Ps23ExpressibleByNilLiteral", "hasMany"]
+- !private ["Ps23ExpressibleByNilLiteral", "init"]
+- !private ["Ps23ExpressibleByNilLiteral", "referencesMany"]
+- !private ["Ps26ExpressibleByStringLiteral", "camelCased"]
+- !private ["Ps26ExpressibleByStringLiteral", "components"]
+- !private ["Ps26ExpressibleByStringLiteral", "endIndex"]
+- !private ["Ps26ExpressibleByStringLiteral", "index"]
+- !private ["Ps26ExpressibleByStringLiteral", "init"]
+- !private ["Ps26ExpressibleByStringLiteral", "pluralize"]
+- !private ["Ps26ExpressibleByStringLiteral", "substring"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "camelCased"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "components"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "endIndex"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "index"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "pluralize"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "substring"]
+- !private ["Ps8Hashable", "CustomField"]
+- !private ["Ps8Hashable", "CustomFieldType"]
+- !private ["Ps8Hashable", "OBJC_ASSOCIATION_RETAIN_NONATOMIC"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps8Hashable", "callStackSymbols"]
+- !private ["Ps8Hashable", "camelCased"]
+- !private ["Ps8Hashable", "className"]
+- !private ["Ps8Hashable", "components"]
+- !private ["Ps8Hashable", "endIndex"]
+- !private ["Ps8Hashable", "has"]
+- !private ["Ps8Hashable", "hasMany"]
+- !private ["Ps8Hashable", "index"]
+- !private ["Ps8Hashable", "infoDictionary"]
+- !private ["Ps8Hashable", "init"]
+- !private ["Ps8Hashable", "main"]
+- !private ["Ps8Hashable", "pluralize"]
+- !private ["Ps8Hashable", "references"]
+- !private ["Ps8Hashable", "referencesMany"]
+- !private ["Ps8Hashable", "remove"]
+- !private ["Ps8Hashable", "store"]
+- !private ["Ps8Hashable", "subscript"]
+- !private ["Ps8Hashable", "substring"]
+- ["Ps16IteratorProtocol", "Self"]
+- !private ["Ps16IteratorProtocol", "activeModelImbedsAssociatedHandle"]
+- !private ["Ps16IteratorProtocol", "activeModelTypeAssociatedHandle"]
+- !private ["Ps16IteratorProtocol", "objc_AssociationPolicy"]
+- !private ["Ps16IteratorProtocol", "objc_setAssociatedObject"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "camelCased"]
+- !private ["Ps25LosslessStringConvertible", "components"]
+- !private ["Ps25LosslessStringConvertible", "endIndex"]
+- !private ["Ps25LosslessStringConvertible", "index"]
+- !private ["Ps25LosslessStringConvertible", "init"]
+- !private ["Ps25LosslessStringConvertible", "pluralize"]
+- !private ["Ps25LosslessStringConvertible", "substring"]
+- !private ["Ps10MirrorPath", "camelCased"]
+- !private ["Ps10MirrorPath", "components"]
+- !private ["Ps10MirrorPath", "endIndex"]
+- !private ["Ps10MirrorPath", "index"]
+- !private ["Ps10MirrorPath", "init"]
+- !private ["Ps10MirrorPath", "pluralize"]
+- !private ["Ps10MirrorPath", "substring"]
+- !private ["P8MonoRail10Modellable", "CustomField"]
+- !private ["P8MonoRail10Modellable", "CustomFieldType"]
+- !private ["P8MonoRail10Modellable", "className"]
+- !private ["P8MonoRail10Modellable", "store"]
+- !private ["C8MonoRail8MonoRail", "Registration"]
+- !private ["Ps17MutableCollection", "subscript"]
+- !private ["CSo7NSArray", "init"]
+- !private ["CSo7NSArray", "remove"]
+- !private ["CSo7NSArray", "subscript"]
+- !private ["PSo8NSCoding", "camelCased"]
+- !private ["PSo8NSCoding", "components"]
+- !private ["PSo8NSCoding", "endIndex"]
+- !private ["PSo8NSCoding", "index"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "pluralize"]
+- !private ["PSo8NSCoding", "remove"]
+- !private ["PSo8NSCoding", "subscript"]
+- !private ["PSo8NSCoding", "substring"]
+- !private ["PSo9NSCopying", "camelCased"]
+- !private ["PSo9NSCopying", "components"]
+- !private ["PSo9NSCopying", "endIndex"]
+- !private ["PSo9NSCopying", "index"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "pluralize"]
+- !private ["PSo9NSCopying", "remove"]
+- !private ["PSo9NSCopying", "subscript"]
+- !private ["PSo9NSCopying", "substring"]
+- !private ["PSo17NSFastEnumeration", "init"]
+- !private ["PSo17NSFastEnumeration", "remove"]
+- !private ["PSo17NSFastEnumeration", "subscript"]
+- !private ["CSo14NSMutableArray", "init"]
+- !private ["CSo14NSMutableArray", "remove"]
+- !private ["CSo14NSMutableArray", "subscript"]
+- !private ["PSo16NSMutableCopying", "camelCased"]
+- !private ["PSo16NSMutableCopying", "components"]
+- !private ["PSo16NSMutableCopying", "endIndex"]
+- !private ["PSo16NSMutableCopying", "index"]
+- !private ["PSo16NSMutableCopying", "init"]
+- !private ["PSo16NSMutableCopying", "pluralize"]
+- !private ["PSo16NSMutableCopying", "remove"]
+- !private ["PSo16NSMutableCopying", "subscript"]
+- !private ["PSo16NSMutableCopying", "substring"]
+- !private ["CSo8NSObject", "CustomField"]
+- !private ["CSo8NSObject", "CustomFieldType"]
+- !private ["CSo8NSObject", "callStackSymbols"]
+- !private ["CSo8NSObject", "camelCased"]
+- !private ["CSo8NSObject", "className"]
+- !private ["CSo8NSObject", "components"]
+- !private ["CSo8NSObject", "endIndex"]
+- !private ["CSo8NSObject", "index"]
+- !private ["CSo8NSObject", "infoDictionary"]
+- !private ["CSo8NSObject", "main"]
+- !private ["CSo8NSObject", "pluralize"]
+- !private ["CSo8NSObject", "remove"]
+- !private ["CSo8NSObject", "store"]
+- !private ["CSo8NSObject", "subscript"]
+- !private ["CSo8NSObject", "substring"]
+- !private ["PSo16NSObjectProtocol", "CustomField"]
+- !private ["PSo16NSObjectProtocol", "CustomFieldType"]
+- !private ["PSo16NSObjectProtocol", "callStackSymbols"]
+- !private ["PSo16NSObjectProtocol", "camelCased"]
+- !private ["PSo16NSObjectProtocol", "className"]
+- !private ["PSo16NSObjectProtocol", "components"]
+- !private ["PSo16NSObjectProtocol", "endIndex"]
+- !private ["PSo16NSObjectProtocol", "index"]
+- !private ["PSo16NSObjectProtocol", "infoDictionary"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "main"]
+- !private ["PSo16NSObjectProtocol", "pluralize"]
+- !private ["PSo16NSObjectProtocol", "remove"]
+- !private ["PSo16NSObjectProtocol", "store"]
+- !private ["PSo16NSObjectProtocol", "subscript"]
+- !private ["PSo16NSObjectProtocol", "substring"]
+- !private ["PSo14NSSecureCoding", "camelCased"]
+- !private ["PSo14NSSecureCoding", "components"]
+- !private ["PSo14NSSecureCoding", "endIndex"]
+- !private ["PSo14NSSecureCoding", "index"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["PSo14NSSecureCoding", "pluralize"]
+- !private ["PSo14NSSecureCoding", "remove"]
+- !private ["PSo14NSSecureCoding", "subscript"]
+- !private ["PSo14NSSecureCoding", "substring"]
+- !private ["CSo8NSString", "camelCased"]
+- !private ["CSo8NSString", "components"]
+- !private ["CSo8NSString", "endIndex"]
+- !private ["CSo8NSString", "index"]
+- !private ["CSo8NSString", "init"]
+- !private ["CSo8NSString", "pluralize"]
+- !private ["CSo8NSString", "substring"]
+- !private ["Sq", "hasMany"]
+- !private ["Sq", "init"]
+- !private ["Sq", "referencesMany"]
+- !private ["Ps22RandomAccessCollection", "subscript"]
+- !private ["Ps26RangeReplaceableCollection", "subscript"]
+- !private ["Ps16RawRepresentable", "OBJC_ASSOCIATION_RETAIN_NONATOMIC"]
+- !private ["P10Foundation20ReferenceConvertible", "init"]
+- !private ["CC8MonoRail8MonoRail12Registration", "active"]
+- ["Ps8Sequence", "Self"]
+- !private ["Ps8Sequence", "activeModelImbedsAssociatedHandle"]
+- !private ["Ps8Sequence", "activeModelTypeAssociatedHandle"]
+- !private ["Ps8Sequence", "init"]
+- !private ["Ps8Sequence", "objc_AssociationPolicy"]
+- !private ["Ps8Sequence", "objc_setAssociatedObject"]
+- !private ["Ps8Sequence", "remove"]
+- !private ["Ps8Sequence", "subscript"]
+- !private ["P8MonoRail12Serializable", "CustomField"]
+- !private ["P8MonoRail12Serializable", "CustomFieldType"]
+- !private ["P8MonoRail12Serializable", "className"]
+- !private ["P8MonoRail12Serializable", "store"]
+- !private ["Ps10SetAlgebra", "init"]
+- !private ["CC8MonoRail11ActiveModel5Store", "modelRegistrationFields"]
+- !private ["SS", "camelCased"]
+- !private ["SS", "components"]
+- !private ["SS", "endIndex"]
+- !private ["SS", "index"]
+- !private ["SS", "init"]
+- !private ["SS", "pluralize"]
+- !private ["SS", "substring"]
+- !private ["Ps16TextOutputStream", "camelCased"]
+- !private ["Ps16TextOutputStream", "components"]
+- !private ["Ps16TextOutputStream", "endIndex"]
+- !private ["Ps16TextOutputStream", "index"]
+- !private ["Ps16TextOutputStream", "init"]
+- !private ["Ps16TextOutputStream", "pluralize"]
+- !private ["Ps16TextOutputStream", "substring"]
+- !private ["Ps20TextOutputStreamable", "camelCased"]
+- !private ["Ps20TextOutputStreamable", "components"]
+- !private ["Ps20TextOutputStreamable", "endIndex"]
+- !private ["Ps20TextOutputStreamable", "index"]
+- !private ["Ps20TextOutputStreamable", "init"]
+- !private ["Ps20TextOutputStreamable", "pluralize"]
+- !private ["Ps20TextOutputStreamable", "substring"]
+- !private ["CSo6Thread", "callStackSymbols"]
+- !private ["Ps14_ArrayProtocol", "subscript"]
+- !private ["Ps23_BidirectionalIndexable", "subscript"]
+- !private ["Ps24_DestructorSafeContainer", "subscript"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "camelCased"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "components"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "endIndex"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "index"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "pluralize"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "substring"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "camelCased"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "components"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "endIndex"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "index"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "pluralize"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "substring"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "camelCased"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "components"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "endIndex"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "index"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "init"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "pluralize"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "substring"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "camelCased"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "components"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "endIndex"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "index"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "init"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "pluralize"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "substring"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "camelCased"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "components"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "endIndex"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "index"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "init"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "pluralize"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "substring"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "camelCased"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "components"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "endIndex"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "index"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "init"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "pluralize"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "substring"]
+- !private ["Ps9_Hashable", "CustomField"]
+- !private ["Ps9_Hashable", "CustomFieldType"]
+- !private ["Ps9_Hashable", "OBJC_ASSOCIATION_RETAIN_NONATOMIC"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps9_Hashable", "callStackSymbols"]
+- !private ["Ps9_Hashable", "camelCased"]
+- !private ["Ps9_Hashable", "className"]
+- !private ["Ps9_Hashable", "components"]
+- !private ["Ps9_Hashable", "endIndex"]
+- !private ["Ps9_Hashable", "has"]
+- !private ["Ps9_Hashable", "hasMany"]
+- !private ["Ps9_Hashable", "index"]
+- !private ["Ps9_Hashable", "infoDictionary"]
+- !private ["Ps9_Hashable", "init"]
+- !private ["Ps9_Hashable", "main"]
+- !private ["Ps9_Hashable", "pluralize"]
+- !private ["Ps9_Hashable", "references"]
+- !private ["Ps9_Hashable", "referencesMany"]
+- !private ["Ps9_Hashable", "remove"]
+- !private ["Ps9_Hashable", "store"]
+- !private ["Ps9_Hashable", "subscript"]
+- !private ["Ps9_Hashable", "substring"]
+- !private ["Ps10_Indexable", "subscript"]
+- !private ["Ps14_IndexableBase", "subscript"]
+- !private ["Ps17_MutableIndexable", "subscript"]
+- !private ["P10Foundation18_MutablePairBoxing", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "camelCased"]
+- !private ["Ps21_ObjectiveCBridgeable", "components"]
+- !private ["Ps21_ObjectiveCBridgeable", "endIndex"]
+- !private ["Ps21_ObjectiveCBridgeable", "hasMany"]
+- !private ["Ps21_ObjectiveCBridgeable", "index"]
+- !private ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "pluralize"]
+- !private ["Ps21_ObjectiveCBridgeable", "referencesMany"]
+- !private ["Ps21_ObjectiveCBridgeable", "subscript"]
+- !private ["Ps21_ObjectiveCBridgeable", "substring"]
+- !private ["Vs26_OptionalNilComparisonType", "hasMany"]
+- !private ["Vs26_OptionalNilComparisonType", "referencesMany"]
+- !private ["Ps22_RandomAccessIndexable", "subscript"]
+- !private ["Ps26_RangeReplaceableIndexable", "subscript"]
+- !private ["OSC22objc_AssociationPolicy", "OBJC_ASSOCIATION_RETAIN_NONATOMIC"]
+depends-nominal:
+- !private "P8MonoRail10Actionable"
+- !private "C8MonoRail11ActiveModel"
+- "P8MonoRail15ActiveReference"
+- !private "Ps9AnyObject"
+- !private "Sa"
+- "P8MonoRail9Arrayable"
+- !private "P8MonoRail8Awakable"
+- !private "Ps23BidirectionalCollection"
+- !private "Sb"
+- !private "CSo6Bundle"
+- !private "Ps7CVarArg"
+- !private "V10Foundation12CharacterSet"
+- !private "Ps10Collection"
+- !private "Ps10Comparable"
+- !private "Ps28CustomDebugStringConvertible"
+- !private "CC8MonoRail11ActiveModel11CustomField"
+- !private "OC8MonoRail11ActiveModel15CustomFieldType"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- !private "Ps17CustomReflectable"
+- !private "Ps23CustomStringConvertible"
+- !private "Vs10Dictionary"
+- !private "Ps9Equatable"
+- !private "Ps25ExpressibleByArrayLiteral"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- !private "Ps30ExpressibleByDictionaryLiteral"
+- !private "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- !private "Ps23ExpressibleByNilLiteral"
+- !private "Ps26ExpressibleByStringLiteral"
+- !private "Ps33ExpressibleByUnicodeScalarLiteral"
+- !private "Ps8Hashable"
+- "Ps16IteratorProtocol"
+- !private "Ps25LosslessStringConvertible"
+- !private "Ps10MirrorPath"
+- !private "P8MonoRail10Modellable"
+- !private "C8MonoRail8MonoRail"
+- !private "Ps17MutableCollection"
+- !private "CSo7NSArray"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "PSo17NSFastEnumeration"
+- !private "CSo14NSMutableArray"
+- !private "PSo16NSMutableCopying"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo8NSString"
+- !private "Sq"
+- !private "Ps22RandomAccessCollection"
+- !private "Ps26RangeReplaceableCollection"
+- !private "Ps16RawRepresentable"
+- !private "P10Foundation20ReferenceConvertible"
+- !private "CC8MonoRail8MonoRail12Registration"
+- "Ps8Sequence"
+- !private "P8MonoRail12Serializable"
+- !private "Ps10SetAlgebra"
+- !private "CC8MonoRail11ActiveModel5Store"
+- !private "SS"
+- !private "Ps16TextOutputStream"
+- !private "Ps20TextOutputStreamable"
+- !private "CSo6Thread"
+- !private "Ps14_ArrayProtocol"
+- !private "Ps23_BidirectionalIndexable"
+- !private "Ps24_DestructorSafeContainer"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- !private "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- !private "Ps34_ExpressibleByBuiltinStringLiteral"
+- !private "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- !private "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- !private "Ps33_ExpressibleByStringInterpolation"
+- !private "Ps35_HasCustomAnyHashableRepresentation"
+- !private "Ps9_Hashable"
+- !private "Ps10_Indexable"
+- !private "Ps14_IndexableBase"
+- !private "Ps17_MutableIndexable"
+- !private "P10Foundation18_MutablePairBoxing"
+- !private "Ps21_ObjectiveCBridgeable"
+- !private "Vs26_OptionalNilComparisonType"
+- !private "Ps22_RandomAccessIndexable"
+- !private "Ps26_RangeReplaceableIndexable"
+- !private "OSC22objc_AssociationPolicy"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/MonoRail.h"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/build/MonoRail.build/Debug-iphonesimulator/MonoRail.build/unextended-module.modulemap"
+interface-hash: "7cc859513b54e9b95e555af50a01bd2c"

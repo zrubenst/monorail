@@ -1,0 +1,302 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ActiveNetworkDelegate"
+- "ActiveNetworkResponse"
+- "ActiveNetworkError"
+- "ActiveNetwork"
+provides-nominal:
+- "P8MonoRail21ActiveNetworkDelegate"
+- "V8MonoRail21ActiveNetworkResponse"
+- "C8MonoRail18ActiveNetworkError"
+- "C8MonoRail13ActiveNetwork"
+provides-member:
+- ["P8MonoRail21ActiveNetworkDelegate", ""]
+- ["V8MonoRail21ActiveNetworkResponse", ""]
+- ["C8MonoRail18ActiveNetworkError", ""]
+- ["C8MonoRail13ActiveNetwork", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "!="
+- !private "&&"
+- !private "+="
+- !private "<"
+- !private "<="
+- !private "=="
+- !private ">"
+- !private ">="
+- "ActiveNetwork"
+- "ActiveNetworkDelegate"
+- "ActiveNetworkError"
+- "ActiveNetworkResponse"
+- "Array"
+- "AssignmentPrecedence"
+- "CastingPrecedence"
+- !private "Data"
+- "Dictionary"
+- !private "HTTPURLResponse"
+- "Int"
+- !private "JSONSerialization"
+- "NSDictionary"
+- "NSError"
+- "NetworkVerb"
+- "Networking"
+- "String"
+- !private "StringLiteralType"
+- "TernaryPrecedence"
+- !private "UnicodeScalarType"
+- "Void"
+- !private "||"
+depends-member:
+- ["C8MonoRail13ActiveNetwork", "ActiveNetworkError"]
+- ["C8MonoRail13ActiveNetwork", "ActiveNetworkResponse"]
+- !private ["C8MonoRail13ActiveNetwork", "Data"]
+- ["C8MonoRail13ActiveNetwork", "Dictionary"]
+- !private ["C8MonoRail13ActiveNetwork", "HTTPURLResponse"]
+- !private ["C8MonoRail13ActiveNetwork", "JSONSerialization"]
+- !private ["C8MonoRail13ActiveNetwork", "NSDictionary"]
+- !private ["C8MonoRail13ActiveNetwork", "NSError"]
+- ["C8MonoRail13ActiveNetwork", "NetworkVerb"]
+- ["C8MonoRail13ActiveNetwork", "String"]
+- ["C8MonoRail13ActiveNetwork", "Void"]
+- ["C8MonoRail13ActiveNetwork", "call"]
+- ["C8MonoRail13ActiveNetwork", "deinit"]
+- ["C8MonoRail13ActiveNetwork", "init"]
+- !private ["C8MonoRail13ActiveNetwork", "request"]
+- !private ["C8MonoRail18ActiveNetworkError", "Dictionary"]
+- ["C8MonoRail18ActiveNetworkError", "Int"]
+- ["C8MonoRail18ActiveNetworkError", "NSDictionary"]
+- ["C8MonoRail18ActiveNetworkError", "NSError"]
+- ["C8MonoRail18ActiveNetworkError", "String"]
+- ["C8MonoRail18ActiveNetworkError", "code"]
+- ["C8MonoRail18ActiveNetworkError", "data"]
+- ["C8MonoRail18ActiveNetworkError", "deinit"]
+- ["C8MonoRail18ActiveNetworkError", "description"]
+- ["C8MonoRail18ActiveNetworkError", "domain"]
+- ["C8MonoRail18ActiveNetworkError", "init"]
+- ["V8MonoRail21ActiveNetworkResponse", "ActiveNetworkError"]
+- ["V8MonoRail21ActiveNetworkResponse", "Dictionary"]
+- ["V8MonoRail21ActiveNetworkResponse", "String"]
+- ["V8MonoRail21ActiveNetworkResponse", "data"]
+- ["V8MonoRail21ActiveNetworkResponse", "error"]
+- ["V8MonoRail21ActiveNetworkResponse", "init"]
+- !private ["Ps9AnyObject", "ActiveNetworkError"]
+- !private ["Ps9AnyObject", "ActiveNetworkResponse"]
+- !private ["Ps9AnyObject", "Dictionary"]
+- !private ["Ps9AnyObject", "JSONSerialization"]
+- !private ["Ps9AnyObject", "NSError"]
+- !private ["Ps9AnyObject", "code"]
+- !private ["Ps9AnyObject", "data"]
+- !private ["Ps9AnyObject", "domain"]
+- !private ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "jsonObject"]
+- !private ["Ps9AnyObject", "request"]
+- !private ["Ps9AnyObject", "statusCode"]
+- ["Ps9AnyObject", ""]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["Ps7CVarArg", "code"]
+- !private ["Ps7CVarArg", "domain"]
+- !private ["Ps7CVarArg", "init"]
+- !private ["Ps7CVarArg", "jsonObject"]
+- !private ["Ps7CVarArg", "statusCode"]
+- !private ["Ps7CVarArg", "toJSON"]
+- !private ["Ps10Collection", "init"]
+- !private ["Ps10Collection", "toJSON"]
+- !private ["Ps10Comparable", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "code"]
+- !private ["Ps28CustomDebugStringConvertible", "domain"]
+- !private ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "jsonObject"]
+- !private ["Ps28CustomDebugStringConvertible", "statusCode"]
+- !private ["Ps28CustomDebugStringConvertible", "toJSON"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "init"]
+- !private ["Ps17CustomReflectable", "toJSON"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps23CustomStringConvertible", "code"]
+- !private ["Ps23CustomStringConvertible", "domain"]
+- !private ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps23CustomStringConvertible", "jsonObject"]
+- !private ["Ps23CustomStringConvertible", "statusCode"]
+- !private ["Ps23CustomStringConvertible", "toJSON"]
+- !private ["Vs10Dictionary", "init"]
+- !private ["Vs10Dictionary", "toJSON"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- !private ["Ps9Equatable", "code"]
+- !private ["Ps9Equatable", "delete"]
+- !private ["Ps9Equatable", "domain"]
+- !private ["Ps9Equatable", "init"]
+- !private ["Ps9Equatable", "jsonObject"]
+- !private ["Ps9Equatable", "statusCode"]
+- !private ["Ps5Error", "code"]
+- !private ["Ps5Error", "domain"]
+- !private ["Ps5Error", "init"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps30ExpressibleByDictionaryLiteral", "init"]
+- !private ["Ps30ExpressibleByDictionaryLiteral", "toJSON"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps26ExpressibleByStringLiteral", "init"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
+- !private ["CSo15HTTPURLResponse", "statusCode"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps8Hashable", "code"]
+- !private ["Ps8Hashable", "delete"]
+- !private ["Ps8Hashable", "domain"]
+- !private ["Ps8Hashable", "init"]
+- !private ["Ps8Hashable", "jsonObject"]
+- !private ["Ps8Hashable", "statusCode"]
+- !private ["CSo17JSONSerialization", "jsonObject"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "init"]
+- !private ["Ps10MirrorPath", "init"]
+- !private ["PSo8NSCoding", "code"]
+- !private ["PSo8NSCoding", "domain"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "statusCode"]
+- !private ["PSo9NSCopying", "code"]
+- !private ["PSo9NSCopying", "domain"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "statusCode"]
+- !private ["CSo7NSError", "code"]
+- !private ["CSo7NSError", "domain"]
+- !private ["CSo7NSError", "init"]
+- !private ["PSo16NSMutableCopying", "init"]
+- !private ["CSo8NSObject", "code"]
+- !private ["CSo8NSObject", "domain"]
+- !private ["CSo8NSObject", "init"]
+- !private ["CSo8NSObject", "jsonObject"]
+- !private ["CSo8NSObject", "statusCode"]
+- !private ["PSo16NSObjectProtocol", "code"]
+- !private ["PSo16NSObjectProtocol", "domain"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "jsonObject"]
+- !private ["PSo16NSObjectProtocol", "statusCode"]
+- !private ["PSo14NSSecureCoding", "code"]
+- !private ["PSo14NSSecureCoding", "domain"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["PSo14NSSecureCoding", "statusCode"]
+- !private ["CSo8NSString", "init"]
+- !private ["V8MonoRail15NetworkResponse", "data"]
+- !private ["V8MonoRail15NetworkResponse", "error"]
+- !private ["V8MonoRail15NetworkResponse", "response"]
+- !private ["O8MonoRail11NetworkVerb", "deinit"]
+- !private ["O8MonoRail11NetworkVerb", "delete"]
+- ["C8MonoRail10Networking", "ActiveNetworkError"]
+- ["C8MonoRail10Networking", "ActiveNetworkResponse"]
+- !private ["C8MonoRail10Networking", "Data"]
+- ["C8MonoRail10Networking", "Dictionary"]
+- !private ["C8MonoRail10Networking", "HTTPURLResponse"]
+- !private ["C8MonoRail10Networking", "JSONSerialization"]
+- !private ["C8MonoRail10Networking", "NSDictionary"]
+- !private ["C8MonoRail10Networking", "NSError"]
+- ["C8MonoRail10Networking", "NetworkVerb"]
+- ["C8MonoRail10Networking", "String"]
+- ["C8MonoRail10Networking", "Void"]
+- ["C8MonoRail10Networking", "call"]
+- ["C8MonoRail10Networking", "init"]
+- !private ["C8MonoRail10Networking", "request"]
+- ["C8MonoRail10Networking", ""]
+- !private ["Ps16RawRepresentable", "delete"]
+- !private ["Ps8Sequence", "init"]
+- !private ["Ps8Sequence", "toJSON"]
+- !private ["SS", "init"]
+- !private ["Ps16TextOutputStream", "init"]
+- !private ["Ps20TextOutputStreamable", "init"]
+- !private ["CSo11URLResponse", "statusCode"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "init"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "init"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "init"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "init"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps9_Hashable", "code"]
+- !private ["Ps9_Hashable", "delete"]
+- !private ["Ps9_Hashable", "domain"]
+- !private ["Ps9_Hashable", "init"]
+- !private ["Ps9_Hashable", "jsonObject"]
+- !private ["Ps9_Hashable", "statusCode"]
+- !private ["Ps10_Indexable", "init"]
+- !private ["Ps10_Indexable", "toJSON"]
+- !private ["Ps14_IndexableBase", "init"]
+- !private ["Ps14_IndexableBase", "toJSON"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "toJSON"]
+depends-nominal:
+- "C8MonoRail13ActiveNetwork"
+- "C8MonoRail18ActiveNetworkError"
+- "V8MonoRail21ActiveNetworkResponse"
+- "Ps9AnyObject"
+- !private "Sb"
+- !private "Ps7CVarArg"
+- !private "Ps10Collection"
+- !private "Ps10Comparable"
+- !private "Ps28CustomDebugStringConvertible"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- !private "Ps17CustomReflectable"
+- !private "Ps23CustomStringConvertible"
+- !private "Vs10Dictionary"
+- !private "Ps9Equatable"
+- !private "Ps5Error"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- !private "Ps30ExpressibleByDictionaryLiteral"
+- !private "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- !private "Ps26ExpressibleByStringLiteral"
+- !private "Ps33ExpressibleByUnicodeScalarLiteral"
+- !private "CSo15HTTPURLResponse"
+- !private "Ps8Hashable"
+- !private "CSo17JSONSerialization"
+- !private "Ps25LosslessStringConvertible"
+- !private "Ps10MirrorPath"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "CSo7NSError"
+- !private "PSo16NSMutableCopying"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo8NSString"
+- !private "V8MonoRail15NetworkResponse"
+- !private "O8MonoRail11NetworkVerb"
+- "C8MonoRail10Networking"
+- !private "Ps16RawRepresentable"
+- !private "Ps8Sequence"
+- !private "SS"
+- !private "Ps16TextOutputStream"
+- !private "Ps20TextOutputStreamable"
+- !private "CSo11URLResponse"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- !private "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- !private "Ps34_ExpressibleByBuiltinStringLiteral"
+- !private "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- !private "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- !private "Ps33_ExpressibleByStringInterpolation"
+- !private "Ps35_HasCustomAnyHashableRepresentation"
+- !private "Ps9_Hashable"
+- !private "Ps10_Indexable"
+- !private "Ps14_IndexableBase"
+- !private "Ps21_ObjectiveCBridgeable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/MonoRail.h"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/build/MonoRail.build/Debug-iphonesimulator/MonoRail.build/unextended-module.modulemap"
+interface-hash: "15d8282fdf103e13e189b67a0345b7bf"

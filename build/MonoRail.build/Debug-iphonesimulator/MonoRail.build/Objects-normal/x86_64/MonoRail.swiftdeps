@@ -1,0 +1,297 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "MonoRail"
+provides-nominal:
+- "C8MonoRail8MonoRail"
+- "CC8MonoRail8MonoRail12Registration"
+- "CC8MonoRail8MonoRail5Error"
+provides-member:
+- ["C8MonoRail8MonoRail", ""]
+- ["CC8MonoRail8MonoRail12Registration", ""]
+- ["CC8MonoRail8MonoRail5Error", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "!"
+- !private "!="
+- !private "+"
+- "ActiveModel"
+- "AssignmentPrecedence"
+- "Bool"
+- "BooleanLiteralType"
+- "MonoRail"
+- "String"
+- "StringLiteralType"
+- "TernaryPrecedence"
+- !private "UnicodeScalarType"
+- !private "fatalError"
+- !private "print"
+depends-member:
+- !private ["P8MonoRail10Actionable", "className"]
+- !private ["C8MonoRail11ActiveModel", "className"]
+- !private ["C8MonoRail11ActiveModel", "deinit"]
+- ["Ps9AnyObject", "Error"]
+- ["Ps9AnyObject", "MonoRail"]
+- ["Ps9AnyObject", "Registration"]
+- !private ["Ps9AnyObject", "_errors"]
+- !private ["Ps9AnyObject", "_registering"]
+- !private ["Ps9AnyObject", "apiUrl"]
+- !private ["Ps9AnyObject", "className"]
+- !private ["Ps9AnyObject", "endIndex"]
+- !private ["Ps9AnyObject", "errorsOn"]
+- !private ["Ps9AnyObject", "fatalError"]
+- !private ["Ps9AnyObject", "hasSuffix"]
+- ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "print"]
+- !private ["Ps9AnyObject", "remove"]
+- !private ["Ps9AnyObject", "shared"]
+- ["Ps9AnyObject", ""]
+- !private ["P8MonoRail8Awakable", "className"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["Ps7CVarArg", "className"]
+- !private ["Ps7CVarArg", "endIndex"]
+- !private ["Ps7CVarArg", "hasSuffix"]
+- ["Ps7CVarArg", "init"]
+- !private ["Ps7CVarArg", "remove"]
+- !private ["Ps10Comparable", "endIndex"]
+- !private ["Ps10Comparable", "hasSuffix"]
+- ["Ps10Comparable", "init"]
+- !private ["Ps10Comparable", "remove"]
+- !private ["Ps28CustomDebugStringConvertible", "className"]
+- !private ["Ps28CustomDebugStringConvertible", "endIndex"]
+- !private ["Ps28CustomDebugStringConvertible", "hasSuffix"]
+- ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "remove"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "endIndex"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "hasSuffix"]
+- ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "remove"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "endIndex"]
+- !private ["Ps17CustomReflectable", "hasSuffix"]
+- ["Ps17CustomReflectable", "init"]
+- !private ["Ps17CustomReflectable", "remove"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps23CustomStringConvertible", "className"]
+- !private ["Ps23CustomStringConvertible", "endIndex"]
+- !private ["Ps23CustomStringConvertible", "hasSuffix"]
+- ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps23CustomStringConvertible", "remove"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- !private ["Ps9Equatable", "className"]
+- !private ["Ps9Equatable", "endIndex"]
+- !private ["Ps9Equatable", "hasSuffix"]
+- ["Ps9Equatable", "init"]
+- !private ["Ps9Equatable", "remove"]
+- ["CC8MonoRail8MonoRail5Error", "ActiveModel"]
+- ["CC8MonoRail8MonoRail5Error", "Bool"]
+- ["CC8MonoRail8MonoRail5Error", "Error"]
+- ["CC8MonoRail8MonoRail5Error", "String"]
+- !private ["CC8MonoRail8MonoRail5Error", "_errors"]
+- ["CC8MonoRail8MonoRail5Error", "deinit"]
+- ["CC8MonoRail8MonoRail5Error", "error"]
+- ["CC8MonoRail8MonoRail5Error", "errorsOn"]
+- !private ["CC8MonoRail8MonoRail5Error", "fatalError"]
+- ["CC8MonoRail8MonoRail5Error", "init"]
+- !private ["CC8MonoRail8MonoRail5Error", "print"]
+- ["CC8MonoRail8MonoRail5Error", "shared"]
+- ["CC8MonoRail8MonoRail5Error", "turnOffErrors"]
+- ["CC8MonoRail8MonoRail5Error", "turnOnErrors"]
+- ["CC8MonoRail8MonoRail5Error", "warn"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "endIndex"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "hasSuffix"]
+- ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "remove"]
+- !private ["Ps26ExpressibleByStringLiteral", "endIndex"]
+- !private ["Ps26ExpressibleByStringLiteral", "hasSuffix"]
+- ["Ps26ExpressibleByStringLiteral", "init"]
+- !private ["Ps26ExpressibleByStringLiteral", "remove"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "endIndex"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "hasSuffix"]
+- ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "remove"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps8Hashable", "className"]
+- !private ["Ps8Hashable", "endIndex"]
+- !private ["Ps8Hashable", "hasSuffix"]
+- ["Ps8Hashable", "init"]
+- !private ["Ps8Hashable", "remove"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "endIndex"]
+- !private ["Ps25LosslessStringConvertible", "hasSuffix"]
+- ["Ps25LosslessStringConvertible", "init"]
+- !private ["Ps25LosslessStringConvertible", "remove"]
+- !private ["Ps10MirrorPath", "endIndex"]
+- !private ["Ps10MirrorPath", "hasSuffix"]
+- ["Ps10MirrorPath", "init"]
+- !private ["Ps10MirrorPath", "remove"]
+- !private ["P8MonoRail10Modellable", "className"]
+- ["C8MonoRail8MonoRail", "ActiveModel"]
+- ["C8MonoRail8MonoRail", "Bool"]
+- ["C8MonoRail8MonoRail", "Error"]
+- ["C8MonoRail8MonoRail", "MonoRail"]
+- ["C8MonoRail8MonoRail", "Registration"]
+- ["C8MonoRail8MonoRail", "String"]
+- ["C8MonoRail8MonoRail", "apiRootUrl"]
+- ["C8MonoRail8MonoRail", "apiUrl"]
+- ["C8MonoRail8MonoRail", "deinit"]
+- !private ["C8MonoRail8MonoRail", "fatalError"]
+- ["C8MonoRail8MonoRail", "init"]
+- !private ["C8MonoRail8MonoRail", "print"]
+- ["C8MonoRail8MonoRail", "register"]
+- ["C8MonoRail8MonoRail", "shared"]
+- !private ["PSo8NSCoding", "endIndex"]
+- !private ["PSo8NSCoding", "hasSuffix"]
+- ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "remove"]
+- !private ["PSo9NSCopying", "endIndex"]
+- !private ["PSo9NSCopying", "hasSuffix"]
+- ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "remove"]
+- !private ["PSo16NSMutableCopying", "endIndex"]
+- !private ["PSo16NSMutableCopying", "hasSuffix"]
+- ["PSo16NSMutableCopying", "init"]
+- !private ["PSo16NSMutableCopying", "remove"]
+- !private ["CSo8NSObject", "className"]
+- !private ["CSo8NSObject", "endIndex"]
+- !private ["CSo8NSObject", "hasSuffix"]
+- !private ["CSo8NSObject", "remove"]
+- !private ["PSo16NSObjectProtocol", "className"]
+- !private ["PSo16NSObjectProtocol", "endIndex"]
+- !private ["PSo16NSObjectProtocol", "hasSuffix"]
+- ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "remove"]
+- !private ["PSo14NSSecureCoding", "endIndex"]
+- !private ["PSo14NSSecureCoding", "hasSuffix"]
+- ["PSo14NSSecureCoding", "init"]
+- !private ["PSo14NSSecureCoding", "remove"]
+- !private ["CSo8NSString", "endIndex"]
+- !private ["CSo8NSString", "hasSuffix"]
+- ["CSo8NSString", "init"]
+- !private ["CSo8NSString", "remove"]
+- ["CC8MonoRail8MonoRail12Registration", "Bool"]
+- ["CC8MonoRail8MonoRail12Registration", "Registration"]
+- !private ["CC8MonoRail8MonoRail12Registration", "_registering"]
+- ["CC8MonoRail8MonoRail12Registration", "active"]
+- ["CC8MonoRail8MonoRail12Registration", "deinit"]
+- ["CC8MonoRail8MonoRail12Registration", "end"]
+- ["CC8MonoRail8MonoRail12Registration", "init"]
+- ["CC8MonoRail8MonoRail12Registration", "shared"]
+- ["CC8MonoRail8MonoRail12Registration", "start"]
+- !private ["P8MonoRail12Serializable", "className"]
+- !private ["Vs12StaticString", "init"]
+- !private ["SS", "endIndex"]
+- !private ["SS", "hasSuffix"]
+- ["SS", "init"]
+- !private ["SS", "remove"]
+- !private ["Ps16TextOutputStream", "endIndex"]
+- !private ["Ps16TextOutputStream", "hasSuffix"]
+- ["Ps16TextOutputStream", "init"]
+- !private ["Ps16TextOutputStream", "remove"]
+- !private ["Ps20TextOutputStreamable", "endIndex"]
+- !private ["Ps20TextOutputStreamable", "hasSuffix"]
+- ["Ps20TextOutputStreamable", "init"]
+- !private ["Ps20TextOutputStreamable", "remove"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "endIndex"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "hasSuffix"]
+- ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "remove"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "endIndex"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "hasSuffix"]
+- ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "remove"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "endIndex"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "hasSuffix"]
+- ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "init"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "remove"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "endIndex"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "hasSuffix"]
+- ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "init"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "remove"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "endIndex"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "hasSuffix"]
+- ["Ps33_ExpressibleByStringInterpolation", "init"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "remove"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "endIndex"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "hasSuffix"]
+- ["Ps35_HasCustomAnyHashableRepresentation", "init"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "remove"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps9_Hashable", "className"]
+- !private ["Ps9_Hashable", "endIndex"]
+- !private ["Ps9_Hashable", "hasSuffix"]
+- ["Ps9_Hashable", "init"]
+- !private ["Ps9_Hashable", "remove"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "endIndex"]
+- !private ["Ps21_ObjectiveCBridgeable", "hasSuffix"]
+- ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "remove"]
+depends-nominal:
+- !private "P8MonoRail10Actionable"
+- !private "C8MonoRail11ActiveModel"
+- "Ps9AnyObject"
+- !private "P8MonoRail8Awakable"
+- !private "Sb"
+- "Ps7CVarArg"
+- "Ps10Comparable"
+- "Ps28CustomDebugStringConvertible"
+- "Ps29CustomPlaygroundQuickLookable"
+- "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- "CC8MonoRail8MonoRail5Error"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- "Ps26ExpressibleByStringLiteral"
+- "Ps33ExpressibleByUnicodeScalarLiteral"
+- "Ps8Hashable"
+- "Ps25LosslessStringConvertible"
+- "Ps10MirrorPath"
+- !private "P8MonoRail10Modellable"
+- "C8MonoRail8MonoRail"
+- "PSo8NSCoding"
+- "PSo9NSCopying"
+- "PSo16NSMutableCopying"
+- !private "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- "PSo14NSSecureCoding"
+- "CSo8NSString"
+- "CC8MonoRail8MonoRail12Registration"
+- !private "P8MonoRail12Serializable"
+- !private "Vs12StaticString"
+- "SS"
+- "Ps16TextOutputStream"
+- "Ps20TextOutputStreamable"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- "Ps34_ExpressibleByBuiltinStringLiteral"
+- "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- "Ps33_ExpressibleByStringInterpolation"
+- "Ps35_HasCustomAnyHashableRepresentation"
+- "Ps9_Hashable"
+- "Ps21_ObjectiveCBridgeable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/MonoRail/MonoRail.h"
+- "/Users/zrubenst/Desktop/zrubenst llc/Projects/MonoRailFramework/MonoRail/build/MonoRail.build/Debug-iphonesimulator/MonoRail.build/unextended-module.modulemap"
+interface-hash: "d9fc01d553f538885575a889b00c06a5"

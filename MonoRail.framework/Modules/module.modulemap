@@ -1,0 +1,10 @@
+framework module MonoRail {
+  umbrella header "MonoRail.h"
+
+  export *
+  module * { export * }
+}
+
+module MonoRail.Swift {
+    header "MonoRail-Swift.h"
+}

@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		AD5C2BB21F0A7FF700CDBEED /* MonoRailUniversal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = AD5C2BB51F0A7FF700CDBEED /* Build configuration list for PBXAggregateTarget "MonoRailUniversal" */;
+			buildPhases = (
+				AD5C2BB61F0A803500CDBEED /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = MonoRailUniversal;
+			productName = MonoRailUniversal;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		AD52DA831EEC5A6500998EF8 /* Arrayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD52DA821EEC5A6500998EF8 /* Arrayable.swift */; };
 		AD81EF5C1EE8C506008CC149 /* MonoRailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81EF5B1EE8C506008CC149 /* MonoRailTests.swift */; };
@@ -239,6 +253,11 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = ZRUBENST;
 				TargetAttributes = {
+					AD5C2BB21F0A7FF700CDBEED = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 5238DX4WER;
+						ProvisioningStyle = Automatic;
+					};
 					AD81EF4C1EE8C506008CC149 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 5238DX4WER;
@@ -266,6 +285,7 @@
 			targets = (
 				AD81EF4C1EE8C506008CC149 /* MonoRail */,
 				AD81EF551EE8C506008CC149 /* MonoRailTests */,
+				AD5C2BB21F0A7FF700CDBEED /* MonoRailUniversal */,
 			);
 		};
 /* End PBXProject section */
@@ -286,6 +306,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AD5C2BB61F0A803500CDBEED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n\n# make sure the output directory exists\n\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n\n# Step 1. Build Device and Simulator versions\n\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\n\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\n\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\"\n\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\n\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\n\nfi\n\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\n\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n\n# Step 5. Convenience step to copy the framework to the project's directory\n\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n\n# Step 6. Convenience step to open the project's directory in Finder\n\nopen \"${BUILD_DIR}/${CONFIGURATION}-universal\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD81EF481EE8C506008CC149 /* Sources */ = {
@@ -339,6 +375,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		AD5C2BB31F0A7FF700CDBEED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 5238DX4WER;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AD5C2BB41F0A7FF700CDBEED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 5238DX4WER;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		AD81EF5F1EE8C506008CC149 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -510,6 +562,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AD5C2BB51F0A7FF700CDBEED /* Build configuration list for PBXAggregateTarget "MonoRailUniversal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD5C2BB31F0A7FF700CDBEED /* Debug */,
+				AD5C2BB41F0A7FF700CDBEED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AD81EF471EE8C506008CC149 /* Build configuration list for PBXProject "MonoRail" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
